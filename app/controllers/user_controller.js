@@ -92,7 +92,7 @@ exports.delete = (req, res) => {
                 });
             } else {
                 res.status(500).send({
-                    message: "No se pudo eliminar el usuario " + req.params.userdId
+                    message: "No se pudo eliminar el usuario " + req.params.userId
                 });
             }
         }else res.send({ message: "Usuario eliminado correctamente" });

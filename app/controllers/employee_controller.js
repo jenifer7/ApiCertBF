@@ -96,7 +96,7 @@ exports.delete = (req, res) => {
                 });
             } else {
                 res.status(500).send({
-                    message: "No se pudo eliminar el usuario " + req.params.EmployeedId
+                    message: "No se pudo eliminar el usuario " + req.params.employeeId
                 });
             }
         }else res.send({ message: "Empleado eliminado correctamente" });

@@ -1,4 +1,4 @@
-const sql = require('./connect.js');
+const sql = require('../connect.js');
 
 const Employee = function(employee){
     this.dpi = employee.dpi;

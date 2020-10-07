@@ -1,4 +1,4 @@
-const sql = require('./connect.js');
+const sql = require('../connect.js');
 
 const Role = function(role){
     this.name = role.name;
@@ -77,7 +77,6 @@ Role.remove = (id, result) => {
         result(null, res);
     });
 };
-
 
 
 module.exports = Role;

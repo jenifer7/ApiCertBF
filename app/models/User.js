@@ -1,4 +1,4 @@
-const sql = require('./connect.js');
+const sql = require('../connect.js');
 
 const User = function(user){
     this.name = user.name;
