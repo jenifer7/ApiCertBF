@@ -4,6 +4,7 @@ const PetCage = function(petCage){
     this.description = petCage.description;
     this.size = petCage.size;
     this.is_active = petCage.is_active;
+    this.cage_status_id = cage_status_id;
 };
 
 PetCage.create = (newPetCage, result) => {
@@ -19,7 +20,7 @@ PetCage.create = (newPetCage, result) => {
 };
 
 PetCage.findById = (petCageId, result) => {
-    sql.query('SELECT * FROM pet_cages WHERE id = ${petCageId}', (err, res) => {
+    sql.query(`SELECT * FROM pet_cages WHERE id = ${petCageId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -47,7 +48,7 @@ PetCage.getAll = result => {
 };
 
 PetCage.update = (id, PetCage, result) => {
-    sql.query('UPDATE pet_cages SET description = ?, size = ?, is_active = ? WHERE id = ?', [ petCage.description, petCage.size, petCage.is_active, id ], (err, res) => {
+    sql.query('UPDATE pet_cages SET description = ?, size = ?, is_active = ?, cage_status_id = ? WHERE id = ?', [ petCage.description, petCage.size, petCage.is_active, petCage.cage_status_id, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

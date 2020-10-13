@@ -6,6 +6,7 @@ const Product = function(product){
     this.price = product.price;
     this.stock = product.stock;
     this.is_active = product.is_active;
+    this.product_type_id = product_type_id;
 };
 
 Product.create = (newProduct, result) => {
@@ -21,7 +22,7 @@ Product.create = (newProduct, result) => {
 };
 
 Product.findById = (productId, result) => {
-    sql.query('SELECT * FROM products WHERE id = ${productId}', (err, res) => {
+    sql.query(`SELECT * FROM products WHERE id = ${productId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -49,7 +50,8 @@ Product.getAll = result => {
 };
 
 Product.update = (id, product, result) => {
-    sql.query('UPDATE products SET name = ?, description = ?, price = ?, stock = ?, is_active = ? WHERE id = ?', [ product.name, product.description, product.price, product.stock, product.is_active, id ], (err, res) => {
+    sql.query('UPDATE products SET name = ?, description = ?, price = ?, stock = ?, is_active = ?, product_type_id = ? WHERE id = ?', 
+    [ product.name, product.description, product.price, product.stock, product.is_active, product.product_type_id, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

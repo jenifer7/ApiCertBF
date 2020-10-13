@@ -5,6 +5,7 @@ const Notification = function(notification){
     this.appointment_time = notification.appointment_time;
     this.date = notification.date;
     this.is_active = notification.is_active;
+    this.client_id = client_id;
 };
 
 Notification.create = (newNotification, result) => {
@@ -20,7 +21,7 @@ Notification.create = (newNotification, result) => {
 };
 
 Notification.findById = (notificationId, result) => {
-    sql.query('SELECT * FROM notifications WHERE id = ${notificationId}', (err, res) => {
+    sql.query(`SELECT * FROM notifications WHERE id = ${notificationId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -48,7 +49,7 @@ Notification.getAll = result => {
 };
 
 Notification.update = (id, notification, result) => {
-    sql.query('UPDATE notifications SET description = ?, appointment_time = ?, date = ?, is_active = ? WHERE id = ?', [ notification.description, notification.appointment_time, notification.date, notification.is_active, id ], (err, res) => {
+    sql.query('UPDATE notifications SET description = ?, appointment_time = ?, date = ?, is_active = ?, client_id = ? WHERE id = ?', [ notification.description, notification.appointment_time, notification.date, notification.is_active, notification.client_id, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

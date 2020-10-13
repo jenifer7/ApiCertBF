@@ -23,7 +23,7 @@ Client.create = (newClient, result) => {
 };
 
 Client.findById = (clientId, result) => {
-    sql.query('SELECT * FROM clients WHERE id = ${clientId}', (err, res) => {
+    sql.query(`SELECT * FROM clients WHERE id = ${clientId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

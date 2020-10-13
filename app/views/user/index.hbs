@@ -1,0 +1,29 @@
+<div class="section">
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each datos}}
+                <tr>
+                    <td>{{ username }}</td>
+                    <td>{{ email }}</td>
+                    <td>{{ is_active }}</td>
+                    <td><a class="button" href="/petto/user/show/{{id}}">Detalle</a></td>
+                    <td><a class="button is-link" href="/petto/user/edit/{{id}}">Editar</a></td>
+                    <td>
+                        <form action="/petto/user/destroy/{{id}}" method="POST">
+                            <button class="button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

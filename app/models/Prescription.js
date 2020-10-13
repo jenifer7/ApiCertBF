@@ -3,6 +3,10 @@ const sql = require('../connect.js');
 const Prescription = function(prescription){
     this.description = prescription.description;
     this.is_active = prescription.is_active;
+    this.user_id = user_id;
+    this.patient_id = patient_id;
+    this.product_id = product_id;
+    
 };
 
 Prescription.create = (newPrescription, result) => {
@@ -18,7 +22,7 @@ Prescription.create = (newPrescription, result) => {
 };
 
 Prescription.findById = (prescriptionId, result) => {
-    sql.query('SELECT * FROM prescriptions WHERE id = ${prescriptionId}', (err, res) => {
+    sql.query(`SELECT * FROM prescriptions WHERE id = ${prescriptionId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -46,7 +50,8 @@ Prescription.getAll = result => {
 };
 
 Prescription.update = (id, prescription, result) => {
-    sql.query('UPDATE prescriptions SET description = ?, is_active = ? WHERE id = ?', [ prescription.description, prescription.is_active, id ], (err, res) => {
+    sql.query('UPDATE prescriptions SET description = ?, is_active = ?, user_id = ?, patient_id = ?, product_id = ? WHERE id = ?', 
+    [ prescription.description, prescription.is_active, prescription.user_id, prescription.patient_id, prescription.product_id, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

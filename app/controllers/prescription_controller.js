@@ -9,7 +9,10 @@ exports.create = (req, res) => {
     }
     const prescription = new Prescription({
         description: req.body.description,
-        is_active: req.body.is_active
+        is_active: req.body.is_active,
+        user_id: req.body.user_id,
+        patient_id: req.body.patient_id,
+        product_id: req.body.product_id
     });
 
     Prescription.create(prescription, (err, data) => {

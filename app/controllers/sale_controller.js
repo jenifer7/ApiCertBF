@@ -10,7 +10,9 @@ exports.create = (req, res) => {
     const sale = new Sale({
         sale_date: req.body.sale_date,
         total_sale: req.body.total_sale,
-        is_active: req.body.is_active
+        is_active: req.body.is_active,
+        user_id: req.body.user_id,
+        client_id: req.body.client_id
     });
 
     Sale.create(sale, (err, data) => {

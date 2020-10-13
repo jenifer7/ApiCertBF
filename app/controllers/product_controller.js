@@ -12,7 +12,8 @@ exports.create = (req, res) => {
         description: req.body.description,
         price: req.body.price,
         stock: req.body.stock,
-        is_active: req.body.is_active
+        is_active: req.body.is_active,
+        product_type_id: req.body.product_type_id
     });
 
     Products.create(products, (err, data) => {

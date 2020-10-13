@@ -15,7 +15,8 @@ exports.create = (req, res) => {
         gender: req.body.gender,
         phone: req.body.phone,
         address: req.body.address,
-        is_active: req.body.is_active
+        is_active: req.body.is_active,
+        user_id: req.body.user_id
     });
 
     Employee.create(employee, (err, data) => {

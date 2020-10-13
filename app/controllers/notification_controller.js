@@ -11,7 +11,8 @@ exports.create = (req, res) => {
         description: req.body.description,
         appointment_time: req.body.appointment_time,
         date: req.body.date,
-        is_active: req.body.is_active
+        is_active: req.body.is_active,
+        client_id: req.body.client_id
     });
 
     Notification.create(notification, (err, data) => {

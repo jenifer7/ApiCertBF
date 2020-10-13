@@ -1,0 +1,53 @@
+<div class="section">
+    <div class="table-container">
+            <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        PACIENTES
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <table class="table is-narrow is-hoverable">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Especie</th>
+                    <th>Descripción</th>
+                    <th>Genero</th>
+                    <th>Peso</th>
+                    <th>Edad</th>
+                    <th>Propietario</th>
+                    <th>Estado Clinico</th>
+                    <th>Estado</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each datos}}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ species }}</td>
+                    <td>{{ description }}</td>
+                    <td>{{ gender }}</td>
+                    <td>{{ weight }}</td>
+                    <td>{{ age }}</td>
+                    <td>{{ client_id }}</td>
+                    <td>{{ patient_status_id }}</td>
+                    <td>{{ is_active }}</td>
+                    <td><a class="button" href="/petto/patient/show/{{id}}">Detalle</a></td>
+                    <td><a class="button is-link" href="/petto/patient/edit/{{id}}">Editar</a></td>
+                    <td>
+                        <form action="/petto/patient/destroy/{{id}}" method="POST">
+                            <button class="button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

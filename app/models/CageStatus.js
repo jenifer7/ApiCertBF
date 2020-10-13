@@ -19,7 +19,7 @@ CageStatus.create = (newCageStatus, result) => {
 };
 
 CageStatus.findById = (cageStatusId, result) => {
-    sql.query('SELECT * FROM cage_status WHERE id = ${cageStatusId}', (err, res) => {
+    sql.query(`SELECT * FROM cage_status WHERE id = ${cageStatusId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

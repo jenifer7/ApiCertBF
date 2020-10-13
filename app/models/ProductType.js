@@ -19,7 +19,7 @@ ProductType.create = (newProductType, result) => {
 };
 
 ProductType.findById = (productTypeId, result) => {
-    sql.query('SELECT * FROM product_types WHERE id = ${productTypeId}', (err, res) => {
+    sql.query(`SELECT * FROM product_types WHERE id = ${productTypeId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

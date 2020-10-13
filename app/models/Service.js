@@ -7,6 +7,9 @@ const Service = function(service){
     this.observations = service.observations;
     this.total_pay = service.total_pay;
     this.is_active = service.is_active;
+    this.patient_id = patient_id;
+    this.service_type_id = service_type_id;
+    this.pet_cages_id = pet_cages_id;
 };
 
 Service.create = (newService, result) => {
@@ -22,7 +25,7 @@ Service.create = (newService, result) => {
 };
 
 Service.findById = (serviceId, result) => {
-    sql.query('SELECT * FROM services WHERE id = ${serviceId}', (err, res) => {
+    sql.query(`SELECT * FROM services WHERE id = ${serviceId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -50,7 +53,8 @@ Service.getAll = result => {
 };
 
 Service.update = (id, service, result) => {
-    sql.query('UPDATE services SET description = ?, start_date = ?, end_date = ?, observations = ?, total_pay = ?, is_active = ? WHERE id = ?', [ service.description, service.start_date, service.end_date, service.observations, service.total_pay, service.is_active, id ], (err, res) => {
+    sql.query('UPDATE services SET description = ?, start_date = ?, end_date = ?, observations = ?, total_pay = ?, is_active = ?, patients_id = ?, service_type_id = ?, pet_cages_id = ? WHERE id = ?',
+    [ service.description, service.start_date, service.end_date, service.observations, service.total_pay, service.is_active, service.patient_id, service.service_type_id, service.pet_cages_id, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

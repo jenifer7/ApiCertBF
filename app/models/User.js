@@ -1,7 +1,7 @@
 const sql = require('../connect.js');
 
 const User = function(user){
-    this.name = user.name;
+    this.username = user.username;
     this.email = user.email;
     this.password = user.password;
     this.is_active = user.is_active;
@@ -20,7 +20,7 @@ User.create = (newUser, result) => {
 };
 
 User.findById = (userId, result) => {
-    sql.query('SELECT * FROM users WHERE id = ${userId}', (err, res) => {
+    sql.query(`SELECT * FROM users WHERE id = ${userId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -48,7 +48,7 @@ User.getAll = result => {
 };
 
 User.update = (id, user, result) => {
-    sql.query('UPDATE users SET name = ?, email = ?, password = ?, is_active = ? WHERE id = ?', [ user.name, user.email, user.password, user.is_active, id ], (err, res) => {
+    sql.query('UPDATE users SET username = ?, email = ?, password = ?, is_active = ? WHERE id = ?', [ user.username, user.email, user.password, user.is_active, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

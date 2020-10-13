@@ -19,7 +19,7 @@ ServiceType.create = (newServiceType, result) => {
 };
 
 ServiceType.findById = (serviceTypeId, result) => {
-    sql.query('SELECT * FROM service_types WHERE id = ${serviceTypeId}', (err, res) => {
+    sql.query(`SELECT * FROM service_types WHERE id = ${serviceTypeId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

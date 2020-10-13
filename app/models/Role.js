@@ -19,7 +19,7 @@ Role.create = (newRole, result) => {
 };
 
 Role.findById = (roleId, result) => {
-    sql.query('SELECT * FROM roles WHERE id = ${roleId}', (err, res) => {
+    sql.query(`SELECT * FROM roles WHERE id = ${roleId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

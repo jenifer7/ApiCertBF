@@ -19,7 +19,7 @@ PatientStatus.create = (newPatientStatus, result) => {
 };
 
 PatientStatus.findById = (patientStatusId, result) => {
-    sql.query('SELECT * FROM patient_status WHERE id = ${patientStatusId}', (err, res) => {
+    sql.query(`SELECT * FROM patient_status WHERE id = ${patientStatusId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);

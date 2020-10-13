@@ -10,7 +10,8 @@ exports.create = (req, res) => {
     const petCage = new PetCage({
         description: req.body.description,
         size: req.body.size,
-        is_active: req.body.is_active
+        is_active: req.body.is_active,
+        cage_status_id: req.body.cage_status_id
     });
 
     PetCage.create(petCage, (err, data) => {

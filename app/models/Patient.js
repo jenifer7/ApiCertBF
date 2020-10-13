@@ -8,6 +8,8 @@ const Patient = function(patient){
     this.weight = patient.weight;
     this.age = patient.age;
     this.is_active = patient.is_active;
+    this.client_id = patient.client_id;
+    this.patient_status_id = patient.patient_status_id;
 };
 
 Patient.create = (newPatient, result) => {
@@ -23,7 +25,7 @@ Patient.create = (newPatient, result) => {
 };
 
 Patient.findById = (patientId, result) => {
-    sql.query('SELECT * FROM patients WHERE id = ${patientId}', (err, res) => {
+    sql.query(`SELECT * FROM patients WHERE id = ${patientId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -51,7 +53,8 @@ Patient.getAll = result => {
 };
 
 Patient.update = (id, patient, result) => {
-    sql.query('UPDATE patients SET name = ?, species = ?, description = ?, gender = ?, weight = ?, age = ?, is_active = ? WHERE id = ?', [ patient.name, patient.species, patient.description, patient.gender, patient.weight, patient.age, patient.is_active, id ], (err, res) => {
+    sql.query('UPDATE patients SET name = ?, species = ?, description = ?, gender = ?, weight = ?, age = ?, is_active = ?, client_id = ?, patient_status_id = ? WHERE id = ?', 
+    [ patient.name, patient.species, patient.description, patient.gender, patient.weight, patient.age, patient.is_active, patient.client_id, patient.patient_status_id, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

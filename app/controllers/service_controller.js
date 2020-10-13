@@ -13,7 +13,10 @@ exports.create = (req, res) => {
         end_date: req.body.end_date,
         observation: req.body.observation,
         total_pay: req.body.total_pay,
-        is_active: req.body.is_active
+        is_active: req.body.is_active,
+        patient_id: req.body.patient_id,
+        service_type_id: req.body.service_type_id,
+        pet_cages_id: req.body.pet_cages_id
     });
 
     Service.create(service, (err, data) => {

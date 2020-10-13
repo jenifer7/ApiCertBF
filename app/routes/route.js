@@ -22,6 +22,13 @@ module.exports = app => {
     app.delete("/users/:userId", users.delete);
 
 
+    app.post("/clients", clients.create);
+    app.get("/clients", clients.findAll);
+    app.get("/clients/:clientId", clients.findById);
+    app.put("/clients/:clientId", clients.update);
+    app.delete("/clients/:clientId", clients.delete);
+
+
     app.post("/roles", roles.create);
     app.get("/roles", roles.findAll);
     app.get("/roles/:roleId", roles.findById);
@@ -33,89 +40,82 @@ module.exports = app => {
     app.get("/employees", employees.findAll);
     app.get("/employees/:employeeId", employees.findById);
     app.put("/employees/:employeeId", employees.update);
-    app.delete("/employees/:employeed", employees.delete);
+    app.delete("/employees/:employeeId", employees.delete);
 
 
     app.post("/tiposPro", tiposPro.create);
     app.get("/tiposPro", tiposPro.findAll);
-    app.get("/tiposPro/:id", tiposPro.findById);
-    app.put("/tiposPro/:id", tiposPro.update);
-    app.delete("/tiposPro/:id", tiposPro.delete);
+    app.get("/tiposPro/:productTypeId", tiposPro.findById);
+    app.put("/tiposPro/:productTypeId", tiposPro.update);
+    app.delete("/tiposPro/:productTypeId", tiposPro.delete);
 
 
     app.post("/sales", sales.create);
     app.get("/sales", sales.findAll);
-    app.get("/sales/:salesId", sales.findById);
-    app.put("/sales/:salesId", sales.update);
-    app.delete("/sales/:salesId", sales.delete);
-
-
-    app.post("/clients", clients.create);
-    app.get("/clients", clients.findAll);
-    app.get("/clients/:clientsId", clients.findById);
-    app.put("/clients/:clientsId", clients.update);
-    app.delete("/clients/:clientsId", clients.delete);
+    app.get("/sales/:saleId", sales.findById);
+    app.put("/sales/:saleId", sales.update);
+    app.delete("/sales/:saleId", sales.delete);
 
 
     app.post("/products", products.create);
     app.get("/products", products.findAll);
-    app.get("/products/:productsId", products.findById);
-    app.put("/products/:productsId", products.update);
-    app.delete("/products/:productsId", products.delete);
+    app.get("/products/:productId", products.findById);
+    app.put("/products/:productId", products.update);
+    app.delete("/products/:productId", products.delete);
 
 
     app.post("/serviceTypes", serviceTypes.create);
     app.get("/serviceTypes", serviceTypes.findAll);
-    app.get("/serviceTypes/:id", serviceTypes.findById);
-    app.put("/serviceTypes/:id", serviceTypes.update);
-    app.delete("/serviceTypes/:id", serviceTypes.delete);
+    app.get("/serviceTypes/:serviceTypeId", serviceTypes.findById);
+    app.put("/serviceTypes/:serviceTypeId", serviceTypes.update);
+    app.delete("/serviceTypes/:serviceTypeId", serviceTypes.delete);
 
 
     app.post("/services", services.create);
     app.get("/services", services.findAll);
-    app.get("/services/:id", services.findById);
-    app.put("/services/:id", services.update);
-    app.delete("/services/:id", services.delete);
+    app.get("/services/:serviceId", services.findById);
+    app.put("/services/:serviceId", services.update);
+    app.delete("/services/:serviceId", services.delete);
 
 
     app.post("/prescriptions", prescriptions.create);
     app.get("/prescriptions", prescriptions.findAll);
-    app.get("/prescriptions/:id", prescriptions.findById);
-    app.put("/prescriptions/:id", prescriptions.update);
-    app.delete("/prescriptions/:id", prescriptions.delete);
+    app.get("/prescriptions/:prescriptionId", prescriptions.findById);
+    app.put("/prescriptions/:prescriptionId", prescriptions.update);
+    app.delete("/prescriptions/:prescriptionId", prescriptions.delete);
 
 
     app.post("/petCages", petCages.create);
     app.get("/petCages", petCages.findAll);
-    app.get("/petCages/:id", petCages.findById);
-    app.put("/petCages/:id", petCages.update);
-    app.delete("/petCages/:id", petCages.delete);
+    app.get("/petCages/:petCageId", petCages.findById);
+    app.put("/petCages/:petCageId", petCages.update);
+    app.delete("/petCages/:petCageId", petCages.delete);
 
 
     app.post("/patientStatuses", patientStatuses.create);
     app.get("/patientStatuses", patientStatuses.findAll);
-    app.get("/patientStatuses/:id", patientStatuses.findById);
-    app.put("/patientStatuses/:id", patientStatuses.update);
-    app.delete("/patientStatuses/:id", patientStatuses.delete);
+    app.get("/patientStatuses/:patientStatusId", patientStatuses.findById);
+    app.put("/patientStatuses/:patientStatusId", patientStatuses.update);
+    app.delete("/patientStatuses/:patientStatusId", patientStatuses.delete);
 
 
     app.post("/patients", patients.create);
     app.get("/patients", patients.findAll);
-    app.get("/patients/:patientsId", patients.findById);
-    app.put("/patients/:patientsId", patients.update);
-    app.delete("/patients/:patientsId", patients.delete);
+    app.get("/patients/:patientId", patients.findById);
+    app.put("/patients/:patientId", patients.update);
+    app.delete("/patients/:patientId", patients.delete);
 
 
     app.post("/notifications", notifications.create);
     app.get("/notifications", notifications.findAll);
-    app.get("/notifications/:id", notifications.findById);
-    app.put("/notifications/:id", notifications.update);
-    app.delete("/notifications/:id", notifications.delete);
+    app.get("/notifications/:notificationId", notifications.findById);
+    app.put("/notifications/:notificationId", notifications.update);
+    app.delete("/notifications/:notificationId", notifications.delete);
 
 
     app.post("/cageStatuses", cageStatuses.create);
     app.get("/cageStatuses", cageStatuses.findAll);
-    app.get("/cageStatuses/:id", cageStatuses.findById);
-    app.put("/cageStatuses/:id", cageStatuses.update);
-    app.delete("/cageStatuses/:id", cageStatuses.delete);
+    app.get("/cageStatuses/:cageStatusId", cageStatuses.findById);
+    app.put("/cageStatuses/:cageStatusId", cageStatuses.update);
+    app.delete("/cageStatuses/:cageStatusId", cageStatuses.delete);
 }

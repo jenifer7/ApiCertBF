@@ -4,6 +4,8 @@ const Sale = function(sale){
     this.sale_date = sale.sale_date;
     this.total_sale = sale.total_sale;
     this.is_active = sale.is_active;
+    this.user_id = user_id;
+    this.client_id = client_id;
 };
 
 Sale.create = (newSale, result) => {
@@ -19,7 +21,7 @@ Sale.create = (newSale, result) => {
 };
 
 Sale.findById = (saleId, result) => {
-    sql.query('SELECT * FROM sales WHERE id = ${saleId}', (err, res) => {
+    sql.query(`SELECT * FROM sales WHERE id = ${saleId}`, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -47,7 +49,7 @@ Sale.getAll = result => {
 };
 
 Sale.update = (id, sale, result) => {
-    sql.query('UPDATE sales SET sale_date = ?, total_sale = ?, is_active = ? WHERE id = ?', [ sale.name, sale.sale_date, sale.total_sale, sale.is_active, id ], (err, res) => {
+    sql.query('UPDATE sales SET sale_date = ?, total_sale = ?, is_active = ?, user_id = ?, client_id = ? WHERE id = ?', [ sale.name, sale.sale_date, sale.total_sale, sale.is_active, id ], (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
