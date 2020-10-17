@@ -1,12 +1,15 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const path = require('path');
-const bodyParser = require('body-parser');
+
 const connetion = require('./connect');
 
 const { connect } = require('./config/database');
+
 
 //Inicializar express
 const app = express();
@@ -14,6 +17,22 @@ const app = express();
 
 //Configuracion del puerto
 app.set('port', process.env.PORT || 3000);
+
+
+//Middleware
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+
+
+
+//Rutas
+app.use("/", require("./routes/index"))
+app.use('/petto', require("./routes/web"));
+require("./routes/route")(app);
+
 
 
 //Configuracion del motor de plantillas handlebars
@@ -26,22 +45,6 @@ app.engine('.hbs', exphbs({
 	helpers: require('./config/handlebars')
 }));
 app.set('view engine', '.hbs');
-
-
-
-//Middleware
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-
-
-//Rutas
-app.use("/", require("./routes/index"))
-app.use('/petto', require("./routes/web"));
-require("./routes/route")(app);
 
 
 

@@ -10,64 +10,80 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <title>PETTO</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
 </head>
 
 <body>
     {{> navbar }}
-    <div class="columns">
-        <div class="column is-one-fifth ">
-            <aside class="menu is-hidden-mobile">
-                <p class="menu-label">
-                    PETTO
-                </p>
-                <ul class="menu-list">
-                    <li class="is-right"><a href="/petto/add" class="is-active">Nuevo Cliente</a></li>
-                    <li class="is-right"><a href="/petto/" class="is-active"></i>Clientes</a></li>
-                    <li><a href="/petto/patient/" class="is-active"></i>Pacientes</a></li>
-                </ul>
-                <p class="menu-label">
-                    Administration
-                </p>
-                <ul class="menu-list">
-                    <li><span class="tag is-white is-medium">Servicios</span></li>
-                    <li><span class="tag is-white is-medium">Productos</span></li>
-                    <li><span class="tag is-white is-medium">Empleados</span></li>
-                    <li><span class="tag is-white is-medium">Usuarios</span></li>
-                </ul>
-            </aside>
-        </div>
-        <div class="column is-9">
-            <section class="hero is-light welcome is-small">
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title">
-                            Hello, Admin.
-                        </h1>
+    {{> message }}
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3 site-wrap ">
+                <aside class="menu is-hidden-mobile">
+                    <p class="menu-label">
+                        PETTO
+                    </p>
+                    <ul class="menu-list">
+                        <li class="is-right"><a href="/petto/add" class="">Nuevo Cliente</a></li>
+                        <li class="is-right"><a href="/petto/" class=""></i>Clientes</a></li>
+                        <li><a href="/petto/patient/" class=""></i>Pacientes</a></li>
+                        <li><a href="/petto/patient/add" class=""></i>Nuevo Paciente</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        Administration
+                    </p>
+                    <ul class="menu-list">
+                        <li><span class="tag is-white is-medium">Servicios</span></li>
+                        <li><span class="tag is-white is-medium">Productos</span></li>
+                        <li><span class="tag is-white is-medium">Empleados</span></li>
+                        <li><span class="tag is-white is-medium">Usuarios</span></li>
+                    </ul>
+                </aside>
+            </div>
+            <div class="column is-9">
+                <section class="hero is-light welcome is-small">
+                    <div class="hero-body">
+                        <div class="container">
+                            <h1 class="title">
+                                Hello, Admin.
+                            </h1>
+                        </div>
                     </div>
-                </div>
-            </section>
-            <section class="info-tiles">
-                <div class="tile is-ancestor has-text-centered">
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="subtitle">Productos</p>
-                        </article>
+                </section>
+                <section class="info-tiles">
+                    <div class="tile is-ancestor has-text-centered">
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="subtitle">Usuarios</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="subtitle">Productos</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="subtitle">Servicios</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent">
+                            <article class="tile is-child box">
+                                <p class="subtitle">Prescripción</p>
+                            </article>
+                        </div>
                     </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="subtitle">Servicios</p>
-                        </article>
+                </section>
+                <div class="columns">
+                    <div class="container is-widescreen column is-full">
+                        {{{ body }}}
                     </div>
-                    <div class="tile is-parent">
-                        <article class="tile is-child box">
-                            <p class="subtitle">Prescripción</p>
-                        </article>
-                    </div>
-                </div>
-            </section>
-            <div class="columns">
-                <div class="container is-widescreen column is-full">
-                    {{{ body }}}
                 </div>
             </div>
         </div>

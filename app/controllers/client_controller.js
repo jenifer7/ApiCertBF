@@ -14,7 +14,7 @@ exports.create = (req, res) => {
         phone: req.body.phone,
         address: req.body.address,
         email: req.body.email,
-        is_active: req.body.is_active
+        is_active: req.body.is_active 
     });
 
     Client.create(client, (err, data) => {

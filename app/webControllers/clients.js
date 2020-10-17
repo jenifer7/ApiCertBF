@@ -32,7 +32,8 @@ function store(req, res) {
         'artist': client.artist,
         'phone': client.phone,
         'address': client.address,
-        'email': client.email
+        'email': client.email,
+        'is_active': client.is_active
     };
     fetch('http://localhost:3000/clients/', {
         method: 'POST',

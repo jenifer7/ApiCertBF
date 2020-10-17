@@ -8,9 +8,9 @@ async function index(req, res) {
     var url = 'http://localhost:3000/patientStatuses';
     await fetch(url)
         .then(res => res.json())
-        .then(datos => {
-            console.log(datos);
-            res.render('status/index', { datos })
+        .then(statuses => {
+            console.log(statuses);
+            res.render('status/index', { statuses })
         })
         .catch(err => {
             console.log(err);
@@ -35,7 +35,7 @@ function store(req, res) {
         body: JSON.stringify(body)
     })
         .then(res => res.json())
-        .then(datos => {
+        .then(status => {
             res.redirect('/petto/status')
         })
         .catch(err => {
@@ -47,8 +47,8 @@ async function show(req, res) {
     var url = 'http://localhost:3000/patientStatuses/' + req.params.patientStatusId;
     await fetch(url)
         .then(res => res.json())
-        .then(dato => {
-            res.render('status/show', { dato })
+        .then(status => {
+            res.render('status/show', { status })
         })
         .catch(err => {
             console.log(err);
@@ -59,8 +59,8 @@ function edit(req, res) {
     var url = 'http://localhost:3000/patientStatuses/' + req.params.patientStatusId;
     fetch(url)
         .then(res => res.json())
-        .then(dato => {
-            res.render('status/edit', { dato })
+        .then(status => {
+            res.render('status/edit', { status })
         })
         .catch(err => {
             console.log(err);
@@ -81,8 +81,8 @@ function update(req, res) {
         body: JSON.stringify(body)
     })
         .then(res => res.json())
-        .then(dato => {
-            console.log(dato);
+        .then(status => {
+            console.log(status);
 
             res.redirect('/petto/status/show/' + id)
         })
@@ -99,8 +99,8 @@ function destroy(req, res) {
         method: 'DELETE'
     })
         .then(res => res.json())
-        .then(dato => {
-            console.log(dato);
+        .then(status => {
+            console.log(status);
 
             res.redirect('/petto/status')
         })

@@ -7,7 +7,7 @@ const Client = function(client){
     this.phone = client.phone;
     this.address = client.address;
     this.email = client.email;
-    this.is_active = client.is_active;
+    this.is_active = client.is_active ? client.is_active:1;
 };
 
 Client.create = (newClient, result) => {
