@@ -1,0 +1,90 @@
+<div class="section">
+    <div class="container">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        AGREGAR SERVICIO
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <form action="/petto/service/" method="POST">
+            <div class="field">
+                <label class="label">Descripción</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="text" placeholder="Descripción" name="description">
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Tipo de Servicio</label>
+                <div class="control">
+                    <input class="input" name="service_type_id" type="text">
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Fecha de Inicio</label>
+                <div class="control">
+                    <input class="input" name="start_date" type="date">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Fecha Fin del Servicio</label>
+                <div class="control">
+                    <input class="input" name="end_date" type="date">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Observaciones</label>
+                <div class="control">
+                    <input class="input" name="observations" type="text">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Total</label>
+                <div class="control">
+                    <input class="input" name="total_pay" type="text">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Jaula</label>
+                <div class="control">
+                    <input class="input" name="pet_cages_id" type="text">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Paciente</label>
+                <div class="control">
+                    <input class="input" name="patient_id" type="text">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Estado</label>
+                <div class="control">
+                    <input class="input" name="is_active" type="text" placeholder="">
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link">Guardar</button>
+                </div>
+                <div class="control">
+                    <a href="/petto/service" class="button is-link is-light">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

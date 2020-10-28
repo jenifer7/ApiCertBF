@@ -1,0 +1,50 @@
+<div class="section">
+    <div class="table-container">
+            <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        EMPLEADOS
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>DPI</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Genero</th>
+                    <th>Telefono</th>
+                    <th>Dirección</th>
+                    <th>Usuario</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{ dpi }}</td>
+                    <td>{{ name }}</td>
+                    <td>{{ lastname }}</td>
+                    <td>{{ birthdate }}</td>
+                    <td>{{ gender }}</td>
+                    <td>{{ phone }}</td>
+                    <td>{{ address }}</td>
+                    <td>{{ username }}</td>
+                    <td>{{ is_active }}</td>
+                    <td><a class="button" href="/petto/employee/show/{{id}}">Detalle</a></td>
+                    <td><a class="button is-link" href="/petto/employee/edit/{{id}}">Editar</a></td>
+                    <td>
+                        <form action="/petto/employee/destroy/{{id}}" method="POST">
+                            <button class="button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

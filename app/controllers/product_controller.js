@@ -2,6 +2,10 @@ const Products = require("../models/Product.js");
 
 //Crear un nuevo producto y guardarlo
 exports.create = (req, res) => {
+    res.render('product/add');
+}
+
+exports.store = (req, res) => {
     if (!req.body) {
         res.status(400).send({
             message: "No se puede enviar contenido vacio"
@@ -21,7 +25,8 @@ exports.create = (req, res) => {
         res.status(500).send({
             message: err.message || "Error al crear registro de producto"
         });
-        else res.send(data);
+        // else res.send(data);
+        else res.redirect('/petto/product');
     });
 };
 
@@ -34,7 +39,8 @@ exports.findAll = (req, res) => {
                 message:
                 err.message || "Error al intentar mostrar los registros Productos"
             });
-            else res.send(data);
+            // else res.send(data);
+            else res.render('product/index', {data});
     });
 };
 
@@ -52,13 +58,26 @@ exports.findById = (req, res) => {
                     message: "Error al mostrar el registro " + req.params.productsId
                 });
             }
-        }else res.send(data);
+        // }else res.send(data);
+        }else res.render('product/show', {data});
     });
 };
 
 
 
 //Editar registros y guardar los cambios
+exports.edit = (req, res) => {
+    Products.findById(req.params.productsId, (err, data) => {
+        if (err) {
+            if (err.kind === "No encontrado") {
+                res.status(404).send({
+                    message: 'No se encontro el empleado ${req.params.productsId}'
+                });
+            }
+            // }else res.send(data);
+        } else res.render('product/edit', { data });
+    });
+}
 exports.update = (req, res) => {
     if(!req.body) {
         res.status(400).send({
@@ -78,7 +97,8 @@ exports.update = (req, res) => {
                         message: "Error al actualizar registro " + req.params.productsId
                     });
                 }
-            }else res.send(data);
+            // }else res.send(data);
+            }else res.redirect('/petto/product/show', {data});
         });
 };
 
@@ -97,6 +117,7 @@ exports.delete = (req, res) => {
                     message: "No se pudo eliminar el registro " + req.params.productsId
                 });
             }
-        }else res.send({ message: "Registro eliminado correctamente" });
+        // }else res.send({ message: "Registro eliminado correctamente" });
+        }else res.redirect('/petto/product');
     });
 };

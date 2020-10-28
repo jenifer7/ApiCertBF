@@ -1,6 +1,6 @@
 <div class="section">
     <div class="table-container">
-            <section class="hero">
+        <section class="hero">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
@@ -29,15 +29,15 @@
             <tbody>
                 {{#each datos}}
                 <tr>
-                    <td>{{ name }}</td>
-                    <td>{{ species }}</td>
-                    <td>{{ description }}</td>
-                    <td>{{ gender }}</td>
-                    <td>{{ weight }}</td>
-                    <td>{{ age }}</td>
-                    <td>{{ client_id }}</td>
-                    <td>{{ patient_status_id }}</td>
-                    <td>{{ is_active }}</td>
+                    <td>{{name }}</td>
+                    <td>{{species }}</td>
+                    <td>{{description }}</td>
+                    <td>{{gender}}</td>
+                    <td>{{weight}}</td>
+                    <td>{{age}}</td>
+                    <td>{{client}}</td>
+                    <td>{{status}}</td>
+                    <td>{{is_active}}</td>
                     <td><a class="button" href="/petto/patient/show/{{id}}">Detalle</a></td>
                     <td><a class="button is-link" href="/petto/patient/edit/{{id}}">Editar</a></td>
                     <td>

@@ -2,6 +2,9 @@ const ProductType = require("../models/ProductType.js");
 
 //Crear un nuevo usuario y guardarlo
 exports.create = (req, res) => {
+    res.render('types_pro/add');
+}
+exports.store = (req, res) => {
     if (!req.body) {
         res.status(400).send({
             message: "No se puede enviar contenido vacio"
@@ -18,7 +21,8 @@ exports.create = (req, res) => {
         res.status(500).send({
             message: err.message || "Error al crear registro en tipos de producto"
         });
-        else res.send(data);
+        // else res.send(data);
+        else res.redirect('/petto/types_pro');
     });
 };
 
@@ -31,7 +35,8 @@ exports.findAll = (req, res) => {
                 message:
                 err.message || "Error al intentar mostrar los registros de Tipos de producto"
             });
-            else res.send(data);
+            // else res.send(data);
+            else res.render('types_pro/index', {data});
     });
 };
 
@@ -49,13 +54,26 @@ exports.findById = (req, res) => {
                     message: "Error al mostrar el registro " + req.params.productTypeId
                 });
             }
-        }else res.send(data);
+        // }else res.send(data);
+        }else res.render('types_pro/show', {data});
     });
 };
 
 
 
 //Editar registros y guardar los cambios
+exports.edit = (req, res) => {
+    ProductType.findById(req.params.productTypeId, (err, data) => {
+        if (err) {
+            if (err.kind === "No encontrado") {
+                res.status(404).send({
+                    message: 'No se encontro el empleado ${req.params.productTypeId}'
+                });
+            }
+            // }else res.send(data);
+        } else res.render('types_pro/edit', { data });
+    });
+}
 exports.update = (req, res) => {
     if(!req.body) {
         res.status(400).send({
@@ -75,7 +93,8 @@ exports.update = (req, res) => {
                         message: "Error al actualizar registro " + req.params.productTypeId
                     });
                 }
-            }else res.send(data);
+            // }else res.send(data);
+            }else res.redirect('/petto/types_pro/show');
         });
 };
 
@@ -94,6 +113,7 @@ exports.delete = (req, res) => {
                     message: "No se pudo eliminar el registro " + req.params.productTypeId
                 });
             }
-        }else res.send({ message: "Registro eliminado correctamente" });
+        // }else res.send({ message: "Registro eliminado correctamente" });
+        }else res.redirect('/petto/types_pro');
     });
 };

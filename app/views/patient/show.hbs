@@ -1,12 +1,12 @@
 <div class="section">
     <div class="container">
-            <section class="hero">
+        <section class="hero">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
                         PACIENTE
                     </h1>
-                    <h2>{{dato.name}}</h2>
+                    <h2>{{dato/data.[0].name}}</h2>
                 </div>
             </div>
         </section>
@@ -14,7 +14,8 @@
             <div class="field">
                 <label class="label">Nombre</label>
                 <div class="control has-icons-left has-icons-right">
-                    <input class="input is-success" type="text" placeholder="Nombre" name="name" value="{{dato.name}}">
+                    <input class="input is-success" type="text" placeholder="Nombre" readonly name="name"
+                        value="{{dato/data.[0].name}}">
                     <span class="icon is-small is-right">
                         <i class="fas fa-check"></i>
                     </span>
@@ -24,7 +25,8 @@
             <div class="field">
                 <label class="label">Especie</label>
                 <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" placeholder="Especie" name="species" value="{{dato.species}}">
+                    <input class="input" type="text" placeholder="Especie" name="species" readonly
+                        value="{{dato/data.[0].species}}">
                     <span class="icon is-small is-right">
                         <i class="fas fa-check"></i>
                     </span>
@@ -34,43 +36,42 @@
             <div class="field">
                 <label class="label">Descripción</label>
                 <div class="control">
-                    <input class="input" name="description" type="text" placeholder="" value="{{dato.description}}">
+                    <input class="input" name="description" type="text" readonly value="{{dato/data.[0].description}}">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Genero</label>
                 <div class="control">
-                    <input class="input" name="gender" type="text" placeholder="" value="{{dato.gender}}">
+                    <input class="input" name="gender" type="text" readonly value="{{dato/data.[0].gender}}">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Peso</label>
                 <div class="control">
-                    <input class="input" name="weight" type="text" placeholder="" value="{{dato.weight}}">
+                    <input class="input" name="weight" type="text" readonly value="{{dato/data.[0].weight}}">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Edad</label>
                 <div class="control">
-                    <input class="input" name="age" type="text" placeholder="" value="{{dato.age}}">
+                    <input class="input" name="age" type="text" readonly value="{{dato/data.[0].age}}">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Propietario</label>
                 <div class="control">
-                    <input class="input" name="client_id" type="text" placeholder="" value="{{dato.client_id}}">
+                    <input class="input" name="client_id" type="text" readonly value="{{dato/data.[0]/client.[0].name}}">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label">Estado Clinico</label>
                 <div class="control">
-                    <input class="input" name="patient_status_id" type="text" placeholder=""
-                        value="{{dato.patient_status_id}}">
+                    <input class="input" name="patient_status_id" type="text" readonly value="{{dato/data.[0]/status.[0].name}}">
                 </div>
             </div>
 

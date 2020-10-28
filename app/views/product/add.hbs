@@ -4,30 +4,16 @@
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
-                        AGREGAR PACIENTE
+                        AGREGAR PRODUCTO
                     </h1>
                 </div>
             </div>
         </section>
-        <form action="/petto/patient/" method="POST">
-            <div class="field">
-                <label class="label">Propietario</label>
-                <div class="control">
-                    <input class="input" name="client_id" type="text" placeholder="">
-                </div>
-            </div>
-
+        <form action="/petto/product/" method="POST">
             <div class="field">
                 <label class="label">Nombre</label>
                 <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" placeholder="Nombre" name="name" value="">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Especie</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" placeholder="Especie" name="species" value="">
+                    <input class="input is-success" type="text" placeholder="Nombre" name="name" value="">
                     <span class="icon is-small is-right">
                         <i class="fas fa-check"></i>
                     </span>
@@ -36,36 +22,37 @@
 
             <div class="field">
                 <label class="label">Descripción</label>
+                <div class="control has-icons-left has-icons-right">
+                    <input class="input" type="text" placeholder="Descripción" name="description" value="">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Tipo de Producto</label>
                 <div class="control">
-                    <input class="input" name="description" type="text" placeholder="">
+                    <input class="input" name="product_type_id" type="text" placeholder="">
+                </div>
+            </div>
+
+
+            <div class="field">
+                <label class="label">Precio</label>
+                <div class="control">
+                    <input class="input" name="price" type="number" placeholder="">
                 </div>
             </div>
 
             <div class="field">
-                <label class="label">Genero</label>
+                <label class="label">Stock</label>
                 <div class="control">
-                    <input class="input" name="gender" type="text" placeholder="">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Peso</label>
-                <div class="control">
-                    <input class="input" name="weight" type="text" placeholder="">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Edad</label>
-                <div class="control">
-                    <input class="input" name="age" type="text" placeholder="">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Estado Clinico</label>
-                <div class="control">
-                    <input class="input" name="patient_status_id" type="text" placeholder="">
+                    <input class="input" name="stock" type="text" placeholder="">
                 </div>
             </div>
 
@@ -75,13 +62,12 @@
                     <input class="input" name="is_active" type="text" placeholder="">
                 </div>
             </div>
-
             <div class="field is-grouped">
                 <div class="control">
                     <button class="button is-link">Guardar</button>
                 </div>
                 <div class="control">
-                    <a href="/petto/patient" class="button is-link is-light">Cancelar</a>
+                    <a href="/petto/product" class="button is-link is-light">Cancelar</a>
                 </div>
             </div>
         </form>

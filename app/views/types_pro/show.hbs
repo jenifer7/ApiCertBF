@@ -1,0 +1,41 @@
+<div class="section">
+    <div class="container">
+        <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        TIPO DE PRODUCTO 
+                    </h1>
+                    <h1>{{data.type}}</h1>
+                </div>
+            </div>
+        </section>
+        <form action="/petto/" method="POST">
+            <div class="field">
+                <label class="label">Tipo</label>
+                <div class="control">
+                    <input class="input" name="type" type="text" value="{{data.type}}" readonly>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Descripción</label>
+                <div class="control">
+                    <input class="input" name="description" type="text" readonly value="{{data.description}}">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Estado</label>
+                <div class="control">
+                    <input class="input" name="is_active" type="text" readonly value="{{data.is_active}}">
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <a class="button is-link is-light" href="/petto/types_pro/">Regresar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

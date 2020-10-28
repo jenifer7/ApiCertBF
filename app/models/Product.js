@@ -5,8 +5,8 @@ const Product = function(product){
     this.description = product.description;
     this.price = product.price;
     this.stock = product.stock;
-    this.is_active = product.is_active;
     this.product_type_id = product_type_id;
+    this.is_active = product.is_active;
 };
 
 Product.create = (newProduct, result) => {
@@ -22,7 +22,8 @@ Product.create = (newProduct, result) => {
 };
 
 Product.findById = (productId, result) => {
-    sql.query(`SELECT * FROM products WHERE id = ${productId}`, (err, res) => {
+    sql.query(`SELECT * FROM products WHERE id = ${productId}; ` +
+    `SELECT tp.id, tp.type FROM product_types tp, products p WHERE p.product_type_id = tp.id AND p.id = ${productId}; `, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
@@ -30,7 +31,10 @@ Product.findById = (productId, result) => {
         }
         if(res.length){
             console.log("Producto: ", res[0]);
-            result(null, res[0]);
+            data = {};
+            data.data = res[0];
+            data.data[0].type = res[1];
+            result(null, data);
             return;
         }
         result({ kind: "No encontrado" }, null);
@@ -38,7 +42,7 @@ Product.findById = (productId, result) => {
 };
 
 Product.getAll = result => {
-    sql.query('SELECT * FROM products', (err, res) => {
+    sql.query('SELECT p.id, p.name, p.description, tp.type, p.price, p.stock, p.is_active FROM products p, product_types tp WHERE p.product_type_id = tp.id ', (err, res) => {
         if(err){
             console.log("error: ", err);
             result(null, err);

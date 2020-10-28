@@ -1,0 +1,38 @@
+<div class="section">
+    <div class="table-container">
+            <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        TIPOS DE SERVICIOS
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ description }}</td>
+                    <td>{{ is_active }}</td>
+                    <td><a class="button" href="/petto/types_serv/show/{{id}}">Detalle</a></td>
+                    <td><a class="button is-link" href="/petto/types_serv/edit/{{id}}">Editar</a></td>
+                    <td>
+                        <form action="/petto/types_serv/destroy/{{id}}" method="POST">
+                            <button class="button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

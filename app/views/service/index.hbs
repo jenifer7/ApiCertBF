@@ -1,0 +1,50 @@
+<div class="section">
+    <div class="table-container">
+            <section class="hero">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        SERVICIOS
+                    </h1>
+                </div>
+            </div>
+        </section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Tipo de Servicio</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin de Servicio</th>
+                    <th>Observaciones</th>
+                    <th>Total</th>
+                    <th>Jaula</th>
+                    <th>Paciente</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{ description }}</td>
+                    <td>{{ service_type_id }}</td>
+                    <td>{{ start_date }}</td>
+                    <td>{{ end_date }}</td>
+                    <td>{{ observations }}</td>
+                    <td>{{ total_pay }}</td>
+                    <td>{{ pet_cages_id }}</td>
+                    <td>{{ patient_id }}</td>
+                    <td>{{ is_active }}</td>
+                    <td><a class="button" href="/petto/service/show/{{id}}">Detalle</a></td>
+                    <td><a class="button is-link" href="/petto/service/edit/{{id}}">Editar</a></td>
+                    <td>
+                        <form action="/petto/service/destroy/{{id}}" method="POST">
+                            <button class="button">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

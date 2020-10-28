@@ -1,9 +1,5 @@
 const fetch = require('node-fetch');
 
-const patientModel = require('../models/Patient');
-const { data } = require('jquery');
-
-
 async function index(req, res) {
     var url = 'http://localhost:3000/patients/';
     await fetch(url)
@@ -56,6 +52,7 @@ async function show(req, res) {
         .then(res => res.json())
         .then(dato => {
             res.render('patient/show', { dato })
+            console.log(dato);
         })
         .catch(err => {
             console.log(err);

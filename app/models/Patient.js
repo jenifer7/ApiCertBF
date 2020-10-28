@@ -25,15 +25,21 @@ Patient.create = (newPatient, result) => {
 };
 
 Patient.findById = (patientId, result) => {
-    sql.query(`SELECT * FROM patients WHERE id = ${patientId}`, (err, res) => {
+    sql.query(`SELECT * FROM patients WHERE id = ${patientId}; ` +
+    `SELECT c.id, c.name FROM clients c, patients p WHERE p.client_id = c.id AND p.id = ${patientId}; ` +
+    `SELECT s.id, s.name FROM patient_status s, patients p WHERE  p.patient_status_id = s.id AND p.id = ${patientId}; `, (err, res) => {
         if(err){
             console.log("error: ", err);
             result(err, null);
             return;
         }
         if(res.length){
-            console.log("Paciente: ", res[0]);
-            result(null, res[0]);
+            console.log("Paciente: ", res[0], res[1], res[2]);
+            data = {};
+            data.data = res[0];
+            data.data[0].client = res[1];
+            data.data[0].status = res[2];
+            result(null, data);
             return;
         }
         result({ kind: "No encontrado" }, null);
@@ -41,7 +47,7 @@ Patient.findById = (patientId, result) => {
 };
 
 Patient.getAll = result => {
-    sql.query('SELECT * FROM patients', (err, res) => {
+    sql.query('SELECT p.id, p.name, p.species, p.description, p.gender, p.weight, p.age, c.name as client, s.name as status, p.is_active FROM patients p, clients c, patient_status s WHERE p.client_id = c.id AND p.patient_status_id = s.id' , (err, res) => {
         if(err){
             console.log("error: ", err);
             result(null, err);

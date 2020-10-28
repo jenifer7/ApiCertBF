@@ -14,9 +14,9 @@ exports.create = (req, res) => {
         gender: req.body.gender,
         weight: req.body.weight,
         age: req.body.age,
-        is_active: req.body.is_active,
         client_id: req.body.client_id,
-        patient_status_id: req.body.patient_status_id
+        patient_status_id: req.body.patient_status_id,
+        is_active: req.body.is_active
     });
 
     Patient.create(patient, (err, data) => {

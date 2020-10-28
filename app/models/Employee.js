@@ -9,7 +9,7 @@ const Employee = function (employee) {
     this.phone = employee.phone;
     this.address = employee.address;
     this.is_active = employee.is_active;
-    this.user_id = user_id;
+    this.user_id = employee.user_id;
 };
 
 Employee.create = (newEmployee, result) => {
@@ -25,7 +25,8 @@ Employee.create = (newEmployee, result) => {
 };
 
 Employee.findById = (employeeId, result) => {
-    sql.query(`SELECT * FROM employees WHERE id = ${employeeId}`, (err, res) => {
+    sql.query(`SELECT * FROM employees WHERE id = ${employeeId}; ` +
+    `SELECT u.id, u.username FROM users u, employees e WHERE e.user_id = u.id AND e.id = ${employeeId}; `, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(err, null);
@@ -33,7 +34,10 @@ Employee.findById = (employeeId, result) => {
         }
         if (res.length) {
             console.log("Empleado: ", res[0]);
-            result(null, res[0]);
+            data = {};
+            data.data = res[0];
+            data.data[0].user = res[1];
+            result(null, data);
             return;
         }
         result({ kind: "No encontrado" }, null);
@@ -41,7 +45,7 @@ Employee.findById = (employeeId, result) => {
 };
 
 Employee.getAll = result => {
-    sql.query('SELECT * FROM employees', (err, res) => {
+    sql.query('SELECT e.id, e.dpi, e.name, e.lastname, e.birthdate, e.gender, e.phone, e.address, u.username, e.is_active FROM employees e, users u WHERE e.user_id = u.id', (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
