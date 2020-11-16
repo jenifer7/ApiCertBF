@@ -9,7 +9,7 @@ const types_pro = require('../controllers/product_type_controller')
 const types_serv = require('../controllers/service_type_controller')
 const product = require('../controllers/product_controller')
 const service = require('../controllers/service_controller')
-const sale = require('../controllers/sale_controller')
+const sale = require('../webControllers/sales')
 const router = express.Router();
 
 router.route('/')
@@ -177,8 +177,6 @@ router.route('/product/destroy/:productsId')
 
 
 
-
-
 router.route('/service/')
 .get(service.findAll)
 .post(service.store);
@@ -198,24 +196,7 @@ router.route('/service/update/:serviceId')
 router.route('/service/destroy/:serviceId')
 .post(service.delete);
 
-
-router.route('/sale/')
-.get(sale.findAll)
-.post(sale.store);
-
 router.route('/sale/add')
 .get(sale.create);
-
-router.route('/sale/show/:saleId')
-.get(sale.findById);
-
-// router.route('/sale/edit/:saleId')
-// .get(sale.edit);
-
-router.route('/sale/update/:saleId')
-.post(sale.update);
-
-router.route('/sale/destroy/:saleId')
-.post(sale.delete);
 
 module.exports = router;

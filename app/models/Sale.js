@@ -15,8 +15,19 @@ const Detail = function (detail) {
     this.subtotal = detail.subtotal;
 };
 
+Sale.create = result => {
+    sql.query(`SELECT * FROM clients`, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null,err);
+            return;
+        }
+        result(null,res);
+    });
+}
 
-Sale.create = (newSale, newDetail, result) => {
+
+Sale.store = (newSale, newDetail, result) => {
     sql.beginTransaction(function (err) {
         if (err) {
             console.log(err);

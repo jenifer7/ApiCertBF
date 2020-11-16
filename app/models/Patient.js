@@ -13,7 +13,7 @@ const Patient = function(patient){
 };
 
 Patient.create = (newPatient, result) => {
-    sql.query("INSERT INTO patients SET ?", newPatient,(err,res) => {
+    sql.query(`INSERT INTO patients SET ?`, newPatient,(err,res) => {
     if (err) {
         console.log("error: ", err);
         result(err, null);

@@ -1,11 +1,6 @@
 const Sale = require("../models/Sale.js");
 
-//Crear un nuevo registro de venta y guardarlo
 exports.create = (req, res) => {
-    res.render('sale/add');
-};
-
-exports.store = (req, res) => {
     if (!req.body) {
         res.status(400).send({
             message: "No se puede enviar contenido vacio"
@@ -34,7 +29,7 @@ exports.store = (req, res) => {
         res.status(500).send({
             message: err.message || "Error al crear registro de venta"
         });
-        else res.redirect('/petto/sale');
+        else res.send(data);
     });
 };
 
