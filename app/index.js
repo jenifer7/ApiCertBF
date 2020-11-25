@@ -1,14 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const path = require('path');
 
 const connetion = require('./connect');
-
-const { connect } = require('./config/database');
 
 
 //Inicializar express
@@ -17,22 +14,6 @@ const app = express();
 
 //Configuracion del puerto
 app.set('port', process.env.PORT || 3000);
-
-
-//Middleware
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-// app.use(express.urlencoded({ extended: false }));
-// app.use(express.json());
-
-
-
-//Rutas
-app.use("/", require("./routes/index"))
-app.use('/petto', require("./routes/web"));
-require("./routes/route")(app);
-
 
 
 //Configuracion del motor de plantillas handlebars
@@ -47,6 +28,26 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 
 
+//Middleware
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+// app.use(express.urlencoded({ extended: false }));
+// app.use(express.json());
+
+
+//Variables globales
+app.use((req, res, next) => {
+	app.locals.user = req.user;
+	next();
+});
+
+
+//Rutas
+app.use(require('./routes/index'));
+app.use('/petto', require('./routes/web'));
+require('./routes/route')(app);
+
 
 app.use(session({
 	secret: 'secret',
@@ -54,8 +55,12 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-app.get('/', function (request, respose) {
-	respose.sendFile(path.join(__dirname, 'signin.html'));
+app.get('/', (req, res) => {
+	res.sendFile(path.join(__dirname, 'views/auth/signin.html'));
+});
+
+app.get('/signup', (req, res) => {
+	res.sendFile(path.join(__dirname, 'views/auth/signup.html'));
 });
 
 app.post('/auth', function (request, response) {
@@ -87,10 +92,17 @@ app.get('/home', function (request, response) {
 	response.end();
 });
 
+
 app.get('/logout', function (req, res) {
 	req.session.destroy();
 	res.send("logout success!");
 });
+
+
+
+app.use(express.static(path.join(__dirname,'/public')));
+
+
 
 //Starting server and app
 app.listen(app.get('port'), () => {

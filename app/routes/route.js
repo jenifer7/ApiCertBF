@@ -51,10 +51,10 @@ module.exports = app => {
 
 
     app.post("/sales", sales.create);
-    app.get("/sales", sales.findAll);
-    app.get("/sales/:saleId", sales.findById);
-    app.put("/sales/:saleId", sales.update);
-    app.delete("/sales/:saleId", sales.delete);
+    // app.get("/sales", sales.findAll);
+    // app.get("/sales/:saleId", sales.findById);
+    // app.put("/sales/:saleId", sales.update);
+    // app.delete("/sales/:saleId", sales.delete);
 
 
     app.post("/products", products.create);

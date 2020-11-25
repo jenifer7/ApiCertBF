@@ -9,26 +9,26 @@ const types_pro = require('../controllers/product_type_controller')
 const types_serv = require('../controllers/service_type_controller')
 const product = require('../controllers/product_controller')
 const service = require('../controllers/service_controller')
-const sale = require('../webControllers/sales')
+const sale = require('../controllers/sale_controller')
 const router = express.Router();
 
-router.route('/')
+router.route('/client/')
 .get(client.index)
 .post(client.store);
 
-router.route('/add')
+router.route('/client/add')
 .get(client.create);
 
-router.route('/show/:clientId')
+router.route('/client/show/:clientId')
 .get(client.show);
 
-router.route('/edit/:clientId')
+router.route('/client/edit/:clientId')
 .get(client.edit);
 
-router.route('/update/:clientId')
+router.route('/client/update/:clientId')
 .post(client.update);
 
-router.route('/destroy/:clientId')
+router.route('/client/destroy/:clientId')
 .post(client.destroy);
 
 
@@ -195,6 +195,10 @@ router.route('/service/update/:serviceId')
 
 router.route('/service/destroy/:serviceId')
 .post(service.delete);
+
+
+router.route('/sale/')
+.post(sale.store);
 
 router.route('/sale/add')
 .get(sale.create);

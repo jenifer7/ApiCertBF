@@ -11,11 +11,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+
     <title>PETTO</title>
+
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
+        aside {
+            margin: 10px;
+        }
+
+        #navigation .menu {
+            position: fixed;
+            width: inherit;
         }
     </style>
 </head>
@@ -23,70 +29,48 @@
 <body>
     {{> navbar }}
     {{> message }}
-    <div class="container">
-        <div class="columns">
-            <div class="column is-3 site-wrap ">
-                <aside class="menu is-hidden-mobile">
-                    <p class="menu-label">
-                        PETTO
-                    </p>
-                    <ul class="menu-list">
-                        <li class="is-right"><a href="/petto/" class=""></i>Clientes</a></li>
-                        <li class="is-right"><a href="/petto/patient/" class=""></i>Pacientes</a></li>
-                        <li class="is-right"><a href="/petto/add" class="">Nuevo Cliente</a></li>
-                        <li class="is-right"><a href="/petto/patient/add" class=""></i>Nuevo Paciente</a></li>
-                    </ul>
-                    <p class="menu-label">
-                        Administration
-                    </p>
-                    <ul class="menu-list">
-                        <li><span class="tag is-white is-medium"><a href="/petto/sale/add">Registro Ventas</a></span>
-                        </li>
-                        <li><span class="tag is-white is-medium"><a href="/petto/service/">Servicios</a></span></li>
-                        <li><span class="tag is-white is-medium"><a href="/petto/product/">Productos</a></span></li>
-                        <li><span class="tag is-white is-medium"><a href="/petto/employee/">Empleados</a></span></li>
-                        <li><span class="tag is-white is-medium"><a href="/petto/user/">Usuarios</a></span></li>
-                    </ul>
-                </aside>
-            </div>
-            <div class="column is-9">
-                <section class="hero is-light welcome is-small">
-                    <div class="hero-body">
-                        <div class="container">
-                            <h1 class="title">
-                                Bienvenido
-                            </h1>
-                        </div>
+    <div class="columns" id="app-content">
+        <div class="column is-2 is-fullheight" id="navigation">
+
+            <aside class="aside">
+                <ul class="menu-list">
+                    <li class="is-right"><a href="/petto/client/" class=""></i>Clientes</a></li>
+                    <li class="is-right"><a href="/petto/client/add" class="">Nuevo Cliente</a></li>
+                    <li class="is-right"><a href="/petto/patient/" class=""></i>Pacientes</a></li>
+                    <li class="is-right"><a href="/petto/patient/add" class=""></i>Nuevo Paciente</a></li>
+                </ul>
+                <p class="menu-label">
+                    Administration
+                </p>
+                <ul class="menu-list">
+                    <li class="is-right"><span class="is-medium"></span><a href="/petto/sale/add">Registro
+                            Ventas</a></span>
+                    </li>
+                    <li class="is-right"><span class="is-medium"></span><a href="/petto/service/">Servicios</a></span>
+                    </li>
+                    <li class="is-right"><span class="is-medium"></span><a href="/petto/product/">Productos</a></span>
+                    </li>
+                    <li class="is-right"><span class="is-medium"></span><a href="/petto/employee/">Empleados</a></span>
+                    </li>
+                    <li class="is-right"><span class="is-medium"></span><a href="/petto/user/">Usuarios</a></span></li>
+                </ul>
+            </aside>
+
+        </div>
+
+        <div class="column is-9">
+            <section class="hero is-light welcome is-small">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">
+                            Bienvenido
+                        </h1>
                     </div>
-                </section>
-                <section class="info-tiles">
-                    <div class="tile is-ancestor has-text-centered">
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="subtitle">Usuarios</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="subtitle">Productos</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="subtitle">Servicios</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="subtitle">Prescripción</p>
-                            </article>
-                        </div>
-                    </div>
-                </section>
-                <div class="columns">
-                    <div class="container is-widescreen column is-full">
-                        {{{ body }}}
-                    </div>
+                </div>
+            </section>
+            <div class="columns">
+                <div class="container is-widescreen column is-full">
+                    {{{ body }}}
                 </div>
             </div>
         </div>

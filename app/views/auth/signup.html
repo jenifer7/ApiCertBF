@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <title>SignUp</title>
+</head>
+
+<body>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <div class="login-hr">
+                        <div class="login-box">
+                            <h3 class="title has-text-white">Registrar Nuevo Usuario</h3>
+                            <form action="/petto/user/" method="POST">
+                                <div class="field">
+                                    <label class="label">Usuario</label>
+                                    <div class="control">
+                                        <input class="input" name="username" type="text" placeholder="" autofocus>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Email</label>
+                                    <div class="control">
+                                        <input class="input" name="email" type="email" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Contraseña</label>
+                                    <div class="control">
+                                        <input class="input" name="password" type="password" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Estado</label>
+                                    <div class="control">
+                                        <input class="input" name="is_active" type="text" >
+                                    </div>
+                                </div>
+
+                                <div class="field is-grouped">
+                                    <div class="control">
+                                        <button class="button is-link">Guardar</button>
+                                    </div>
+                                    <div class="control">
+                                        <a href="/" class="button is-link is-light">Cancelar</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

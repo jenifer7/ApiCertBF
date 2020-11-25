@@ -1,19 +1,24 @@
 <div class="section">
     <div class="container">
-        <section class="hero">
+        <section class="hero is-link">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">
+                    <h1 class="title is-l">
                         AGREGAR PACIENTE
                     </h1>
                 </div>
             </div>
         </section>
+        <br>
         <form action="/petto/patient/" method="POST">
             <div class="field">
                 <label class="label">Propietario</label>
-                <div class="control">
-                    <input class="input" name="client_id" type="text" placeholder="">
+                <div class="select">
+                    <select name="client_id" id="client_id">
+                        {{#each data }}
+                        <option value="{{id}}">{{ name }} {{ lastname }}</option>
+                        {{/each}}
+                    </select>
                 </div>
             </div>
 

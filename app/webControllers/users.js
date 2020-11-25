@@ -28,7 +28,8 @@ function store(req, res) {
     const body = {
         'username': user.username,
         'email': user.email,
-        'password': user.password
+        'password': user.password,
+        'is_active': user.is_active
     };
     fetch('http://localhost:3000/users/', {
         method: 'POST',

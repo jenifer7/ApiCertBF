@@ -1,92 +1,136 @@
-<div class="hero is-link">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title is-1">Registrar Venta</h1>
-        </div>
-    </div>
-</div>
-<div>
-    <form action="/petto/sale/" class="form" method="post">
-        {{@csrf}}
-        <div class="field">
-            <label class="label" for="user_id">Vendedor</label>
-            <div class="control">
-                <input class="input" type="text" name="user_id" id="user_id" value="{{user.username}}">
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label" for="">Cliente</label>
-            <div class="select">
-                <input class="input" type="text" name="client_id" id="client_id">
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label" for="">Producto</label>
-            <div class="select">
-                <input class="input" type="text" name="product_id" id="product_id">
-            </div>
-        </div>
-
-        <div class="field">
-            <label class="label" for="quantity">Cantidad</label>
-            <input class="input" name="quantity" id="quantity" type="number">
-        </div>
-
-        <div class="field">
-            <label class="label" for="price">Precio Venta</label>
-            <input class="input" type="number" name="price" id="price">
-        </div>
-
-        <div class="field">
-            <div class="control">
-                <a id="agregar"><input class="button is-dark is-outlined" type="button" value="Agregar"></a>
+<div class="section">
+    <div class="container">
+        <div class="hero is-link">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title is-1">Registro Venta</h1>
+                </div>
             </div>
         </div>
         <br>
-        <hr>
-        <div>
-            <table id="detalles" class="table is-fullwidth">
-                <thead style="background-color: #A9D0F5">
-                    <th></th>
-                    <th>Productos</th>
-                    <th>Cantidad</th>
-                    <th>Precio Venta</th>
-                    <th>SubTotal</th>
-                </thead>
-                <tfoot>
-                    <th>TOTAL</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th>
-                        <h4 id="total">Q/. 0.00</h4><input type="hidden" name="total_sale" id="total_sale">
-                    </th>
-                </tfoot>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-        <div id="guardar">
-            <div>
-                <input name="_token" value="" type="hidden"></input>
-                <button class="button is-success">Guardar</button>
-                <a href="" class="button is-warning" name="cancel">Cancelar</a>
+        <form action="" class="form" method="post">
+            {{ csrf }}
+            <div class="field">
+                <label class="label">Fecha Venta</label>
+                <div class="control">
+                    <input class="input is-static is-large" name="" type="" id="date_sale">
+                </div>
             </div>
-        </div>
-    </form>
+
+            <div class="field">
+                <label class="label" for="user_id">Vendedor</label>
+                <div class="control">
+                    <input type="text" class="input" name="user_id" id="user_id" value="">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="client_id">Cliente</label>
+                <div class="select">
+                    <select name="client_id" id="client_id">
+                        {{#each data/data.[0]/client }}
+                        <option value="{{id}}">{{ name }} {{ lastname }}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="product_id">Producto</label>
+                <div class="select">
+                    <select name="product_id" id="product_id">
+                        {{#each data/data }}
+                        <option value="{{id}}_{{stock}}_{{price}}">{{ name }}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="stock">Stock</label>
+                <input class="input" name="stock" id="stock" type="number" value="" readonly>
+            </div>
+
+            <div class="field">
+                <label class="label" for="price">Precio Venta</label>
+                <input class="input" type="number" name="price" id="price" readonly>
+            </div>
+
+
+            <div class="field">
+                <label class="label" for="quantity">Cantidad</label>
+                <input class="input" name="quantity" id="quantity" type="number">
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <!-- <button id="add">Agregar</button> -->
+                    <a id="add"><input class="button is-dark is-outlined" type="button" value="Agregar"></a>
+                </div>
+            </div>
+            <hr>
+            <br>
+            <div>
+                <table id="detalles" class="table is-fullwidth">
+                    <thead style="background-color: #A9D0F5">
+                        <th></th>
+                        <th>Productos</th>
+                        <th>Cantidad</th>
+                        <th>Precio Venta</th>
+                        <th>SubTotal</th>
+                    </thead>
+                    <tfoot>
+                        <th>TOTAL</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                            <h4 id="total">Q/. 0.00</h4><input type="hidden" name="total_sale" id="total_sale">
+                        </th>
+                    </tfoot>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="guardar">
+                <div>
+                    <input name="_token" value="" type="hidden"></input>
+                    <button class="button is-success" onclick="guardar()">Guardar</button>
+                    <a href="/petto/sale" class="button is-warning" name="cancel">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 
-{{!-- <script>
+<script>
+    window.onload = function () {
+        var fecha = new Date();
+        var y = fecha.getFullYear();
+        var m = fecha.getMonth() + 1;
+        var d = fecha.getDate();
+        if (d < 10)
+            d = '0' + d;
+        if (m < 10)
+            m = '0' + m;
+
+        document.getElementById("date_sale").value = d + "/" + m + "/" + y;
+    }
+</script>
+
+<script>
     $(document).ready(function () {
-        $('#agregar').click(function () {
+        $('#add').click(function () {
             agregar();
+            console.log("agregar");
         })
         mostrarValores();
     });
 
+    var detail = [];
+    var user = document.getElementById('user_id');
+    var client = document.getElementById('client_id');
     var cont = 0;
     total = 0;
     subtotal = [];
@@ -96,49 +140,78 @@
 
     function mostrarValores() {
         datosArticulo = document.getElementById('product_id').value.split('_');
-        $("#unit_price").val(datosArticulo[2]);
         $("#stock").val(datosArticulo[1]);
+        $("#price").val(datosArticulo[2]);
+        console.log(datosArticulo);
+    }
+
+
+    function guardar() {
+        var sale = [{
+            total_sale: total,
+            user_id: user,
+            client_id: client,
+        },
+            detail,
+        ];
+
+        fetch('http://localhost:3000/sales', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(sale)
+        })
+            .then(res => res.json())
+            .then(datos => {
+                res.redirect('/petto/sale')
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     function agregar() {
+
         datosArticulo = document.getElementById('product_id').value.split('_');
+        console.log(detail.length);
+        var detalle = {
+            idproducto: datosArticulo[0],
+            producto: $('#product_id option:selected').text(),
+            cantidad: $('#quantity').val(),
+            precio_venta: $('#price').val(),
+            stock: $('#stock').val(),
+            subtotal: $('#quantity').val() * $('#price').val(),
+        };
+        detail.push(detalle);
+        console.log(detail);
 
-        idproducto = datosArticulo[0];
-        producto = $('#product_id option:selected').text();
-        cantidad = $('#quantity').val();
-        precio_venta = $('#price').val();
-        stock = $('#stock').val();
+        if ($('#detalles tbody').length >= 1) {
+            $("#fila ").remove();
+        }
+        for (let i = 0; i < detail.length; i++) {
+            console.log(detail.length);
+            console.log(detail[i].producto);
+            console.log(this.detail[i].subtotal);
 
-        if (idproducto != "" && cantidad != "" && cantidad > 0 && precio_venta != "") {
+            var fila = '<tr class="selected" id="fila' + cont + '">' +
+                '<td><button class="button" onclick="eliminar(' + cont + ');">x</button></td>' +
+                '<td><input type="text" name="" value="' + detail[i].idproducto + '">' + this.detail[i].producto + '</td>' +
+                '<td><input type="number" name="" value="' + this.detail[i].cantidad + '"></td>' +
+                '<td><input type="number" name="" value="' + this.detail[i].precio_venta + '" readonly></td>' +
+                '<td>' + this.detail[i].subtotal + '</td></tr>';
 
-            if (stock >= cantidad) {
-                subtotal[cont] = (cantidad * precio_venta);
-                total = total + subtotal[cont];
-
-                var fila = '<tr class="selected" id="fila' + cont + '">' +
-                    '<td><button class="button" onclick="eliminar(' + cont + ');">x</button></td>' +
-                    '<td><input type="hidden" name="producto_id[]" value="' + idproducto + '">' + producto + '</td>' +
-                    '<td><input type="number" name="quantity[]" value="' + cantidad + '"></td>' +
-                    '<td><input type="number" name="price[]" value="' + precio_venta + '" readonly></td>' +
-                    '<td>' + subtotal[cont] + '</td></tr>';
-
-                cont++;
+            cont++;
 
 
-                $('#total').html('Q/. ' + total);
-                $('#total_sale').val(total);
-                limpiar();
+            $('#total').html('Q/. ' + total);
+            $('#total_sale').val(total);
+            limpiar();
 
-                $('#detalles').append(fila);
-                evaluar();
+            $('#detalles').append(fila);
+            evaluar();
 
-            } else {
-                alert('Cantidad a vender supera el Stock' + stock);
-            }
-        } else {
-            alert("Error al ingresar detalle de venta");
         }
     }
+
 
     function limpiar() {
         $('#quantity').val('');
@@ -161,4 +234,4 @@
         $('#fila' + index).remove();
         evaluar();
     }
-</script> --}}
+</script>

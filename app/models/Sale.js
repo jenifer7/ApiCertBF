@@ -15,11 +15,22 @@ const Detail = function (detail) {
     this.subtotal = detail.subtotal;
 };
 
+
+
 Sale.create = result => {
-    sql.query(`SELECT * FROM clients`, (err, res) => {
+    sql.query(`SELECT p.id, p.name, p.stock, p.price FROM products p WHERE p.is_active = 1 AND p.stock > 0; ` +
+    `SELECT c.id, c.name, c.lastname FROM clients c WHERE c.is_active = 1; ` , (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null,err);
+            return;
+        }
+        if(res.length){
+            // console.log("Producto: ", res[0], res[1]);
+            data = {};
+            data.data = res[0];
+            data.data[0].client = res[1];
+            result(null, data);
             return;
         }
         result(null,res);
@@ -46,11 +57,11 @@ Sale.store = (newSale, newDetail, result) => {
 
             for (let ds = 0; ds < newDetail.length; ds++) {
                 details.push([
-                    newDetail[ds].saleId,
                     newDetail[ds].quantity,
                     newDetail[ds].product_id,
                     newDetail[ds].price,
-                    newDetail[ds].subtotal
+                    newDetail[ds].subtotal,
+                    saleId
                 ]);
             }
             sql.query("INSERT into sale_details (saleId,quantity,product_id,price,subtotal) values ?", [details], function (err, res) {
@@ -75,65 +86,4 @@ Sale.store = (newSale, newDetail, result) => {
     });
 };
 
-Sale.findById = (saleId, result) => {
-    sql.query(`SELECT * FROM sales WHERE id = ${saleId}`, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(err, null);
-            return;
-        }
-        if (res.length) {
-            console.log("Venta: ", res[0]);
-            result(null, res[0]);
-            return;
-        }
-        result({ kind: "No encontrado" }, null);
-    });
-};
-
-Sale.getAll = result => {
-    sql.query('SELECT * FROM sales', (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
-        }
-        console.log("Ventas: ", res);
-        result(null, res);
-    });
-};
-
-Sale.update = (id, sale, result) => {
-    sql.query('UPDATE sales SET sale_date = ?, total_sale = ?, is_active = ?, user_id = ?, client_id = ? WHERE id = ?', [sale.name, sale.sale_date, sale.total_sale, sale.is_active, id], (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
-        }
-        if (res.affectedRows == 0) {
-            result({ kind: "not_found" }, null);
-            return;
-        }
-        console.log("Registro actualizado: ", { id: id, ...sale });
-        result(null, { id: id, ...sale });
-    });
-};
-
-Sale.remove = (id, result) => {
-    sql.query('DELETE FROM sales WHERE id = ?', id, (err, res) => {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-            return;
-        }
-        if (res.affectedRows == 0) {
-            result({ kind: "Not Found" }, null);
-            return;
-        }
-        console.log("Registro eliminado");
-        result(null, res);
-    });
-};
-
-
-module.exports = Sale, Detail;
+module.exports = {Sale, Detail};
