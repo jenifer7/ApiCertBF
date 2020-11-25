@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
+var cookieParser = require('cookie-parser');
 const path = require('path');
 
 const connetion = require('./connect');
@@ -48,10 +49,10 @@ app.use(require('./routes/index'));
 app.use('/petto', require('./routes/web'));
 require('./routes/route')(app);
 
-
+app.use(cookieParser());
 app.use(session({
 	secret: 'secret',
-	resave: true,
+	resave: false,
 	saveUninitialized: true
 }));
 

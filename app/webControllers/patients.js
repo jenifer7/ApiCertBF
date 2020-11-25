@@ -13,9 +13,9 @@ async function index(req, res) {
         });
 }
 
-function create(req, res) {
-    res.render('patient/add');
-}
+// function create(req, res) {
+//     res.render('patient/add');
+// }
 
 function store(req, res) {
     console.log(req);
@@ -130,4 +130,4 @@ function destroy(req, res) {
 //     });
 // }
 
-module.exports = { index, store, create, show, edit, update, destroy }
+module.exports = { index, store, show, edit, update, destroy }

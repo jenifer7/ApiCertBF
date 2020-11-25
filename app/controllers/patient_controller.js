@@ -1,7 +1,19 @@
 const Patient = require("../models/Patient.js");
 
-//Crear y guardar nuevo paciente
 exports.create = (req, res) => {
+    Patient.create((err, data) => {
+        if (err)
+            res.status(500).send({
+                message:
+                    err.message || "Error al mostrar"
+            });
+            else res.render('patient/add', {data});
+    });
+}
+
+
+//Crear y guardar nuevo paciente
+exports.store = (req, res) => {
     if (!req.body) {
         res.status(400).send({
             message: "No se puede enviar contenido vacio"
@@ -20,10 +32,10 @@ exports.create = (req, res) => {
     });
 
     Patient.create(patient, (err, data) => {
-        if(err)
-        res.status(500).send({
-            message: err.message || "Error al crear registro de Paciente"
-        });
+        if (err)
+            res.status(500).send({
+                message: err.message || "Error al crear registro de Paciente"
+            });
         else res.send(data);
     });
 };
@@ -32,12 +44,12 @@ exports.create = (req, res) => {
 //Mostrar todos los registros
 exports.findAll = (req, res) => {
     Patient.getAll((err, data) => {
-        if(err)
+        if (err)
             res.status(500).send({
                 message:
-                err.message || "Error al intentar mostrar los Pacientes"
+                    err.message || "Error al intentar mostrar los Pacientes"
             });
-            else res.send(data);
+        else res.send(data);
     });
 };
 
@@ -45,8 +57,8 @@ exports.findAll = (req, res) => {
 //Mostrar un Paciente segun id
 exports.findById = (req, res) => {
     Patient.findById(req.params.patientId, (err, data) => {
-        if(err) {
-            if(err.kind === "No encontrado") {
+        if (err) {
+            if (err.kind === "No encontrado") {
                 res.status(404).send({
                     message: 'No se encontro Paciente ${req.params.patientId}'
                 });
@@ -55,7 +67,7 @@ exports.findById = (req, res) => {
                     message: "Error al mostrar el registro " + req.params.patientId
                 });
             }
-        }else res.send(data);
+        } else res.send(data);
     });
 };
 
@@ -63,7 +75,7 @@ exports.findById = (req, res) => {
 
 //Editar registros y guardar los cambios
 exports.update = (req, res) => {
-    if(!req.body) {
+    if (!req.body) {
         res.status(400).send({
             message: "No se puede ingresar campos vacios"
         });
@@ -76,12 +88,12 @@ exports.update = (req, res) => {
                     res.status(404).send({
                         message: 'Paciente no encontrado ${req.params.patientId}'
                     });
-                }else {
+                } else {
                     res.status(500).send({
                         message: "Error al actualizar registro " + req.params.patientId
                     });
                 }
-            }else res.send(data);
+            } else res.send(data);
         });
 };
 
@@ -100,6 +112,6 @@ exports.delete = (req, res) => {
                     message: "No se pudo eliminar el registro " + req.params.patientId
                 });
             }
-        }else res.send({ message: "Registro eliminado correctamente" });
+        } else res.send({ message: "Registro eliminado correctamente" });
     });
 };

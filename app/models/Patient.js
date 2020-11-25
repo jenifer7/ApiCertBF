@@ -12,7 +12,18 @@ const Patient = function(patient){
     this.patient_status_id = patient.patient_status_id;
 };
 
-Patient.create = (newPatient, result) => {
+Patient.create = result => {
+    sql.query(`SELECT c.id, c.name, c.lastname FROM clients c WHERE c.is_active = 1; `, (err,res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null,err);
+            return;
+        }
+        result(null,res);
+    });
+}
+
+Patient.store = (newPatient, result) => {
     sql.query(`INSERT INTO patients SET ?`, newPatient,(err,res) => {
     if (err) {
         console.log("error: ", err);
