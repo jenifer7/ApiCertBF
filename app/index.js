@@ -40,6 +40,9 @@ app.use(bodyParser.json());
 //Variables globales
 app.use((req, res, next) => {
 	app.locals.user = req.user;
+	console.log("usuario",req.user);
+	console.log("usuarios",req.sessionID);
+	console.log("session",req.session);
 	next();
 });
 
@@ -101,8 +104,7 @@ app.get('/logout', function (req, res) {
 
 
 
-app.use(express.static(path.join(__dirname,'/public')));
-
+app.use(express.static(path.join(__dirname,'public')));
 
 
 //Starting server and app

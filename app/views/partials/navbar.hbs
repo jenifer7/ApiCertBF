@@ -1,6 +1,6 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item brand-text" href="">
+        <a class="navbar-item brand-text" href="/home">
             PETTO
         </a>
         <a role="button" class="navbar-burger burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
@@ -20,16 +20,34 @@
         </div>
 
         <div class="navbar-end">
-            <div class="navbar-item">
-                <form action="logout" method="post">
-                    <input name="_method" type="hidden" value="delete">
-                    <input name="_csrf_token" type="hidden"
-                        value="JBxGTxkhJX09aUM+IjEVNwQHFF8jEAAAbPi+AtgRE+5sMuDRLfFmjg==">
-                    <a class="button" data-submit="parent" href="/" rel="nofollow">
-                        <strong>Log out</strong>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a id="navbarDropdown" class="navbar-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" v-pre>
+                    <figure class="image avatar is-32x32">
+                        <img class="is-rounded" src="images/user1.png">
+                    </figure>
+                    &nbsp; Hi, usuario
+                </a>
+                <div aria-labelledby="navbarDropdown" class="navbar-dropdown is-right">
+                    <form action="logout" method="post">
+                        <input name="_method" type="hidden" value="delete">
+                        <input name="_csrf_token" type="hidden"
+                            value="JBxGTxkhJX09aUM+IjEVNwQHFF8jEAAAbPi+AtgRE+5sMuDRLfFmjg==">
+                        <a class="navbar-item" data-submit="parent" href="/" rel="nofollow">
+                            <strong>Log out</strong>
+                        </a>
+                    </form>
+                    <a href="/petto/user/add" class="navbar-item">
+                        <span class="icon is-small">
+                            <i class="fa fa-user-o"></i>
+                        </span>
+                        &nbsp; CrearUsuario
                     </a>
-                </form>
+                    <hr class="navbar-divider">
+                    <div class="navbar-item">
+                        Version 1.0
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 </nav>

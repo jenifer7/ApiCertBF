@@ -29,10 +29,10 @@
                     <td>{{ phone }}</td>
                     <td>{{ email }}</td>
                     <td>{{ is_active }}</td>
-                    <td><a class="button" href="/petto/show/{{id}}">Detalle</a></td>
-                    <td><a class="button is-link" href="/petto/edit/{{id}}">Editar</a></td>
+                    <td><a class="button" href="/petto/client/show/{{id}}">Detalle</a></td>
+                    <td><a class="button is-link" href="/petto/client/edit/{{id}}">Editar</a></td>
                     <td>
-                        <form action="/petto/destroy/{{id}}" method="POST">
+                        <form action="/petto/client/destroy/{{id}}" method="POST">
                             <button class="button">Eliminar</button>
                         </form>
                     </td>

@@ -42,7 +42,7 @@ function store(req, res) {
     })
         .then(res => res.json())
         .then(datos => {
-            res.redirect('/petto')
+            res.redirect('/petto/client')
         })
         .catch(err => {
             console.log(err);
@@ -95,7 +95,7 @@ function update(req, res) {
         .then(dato => {
             console.log(dato);
 
-            res.redirect('/petto/show/' + id)
+            res.redirect('/petto/client/show/' + id)
         })
         .catch(err => {
             console.log(err);
@@ -113,7 +113,7 @@ function destroy(req, res) {
         .then(dato => {
             console.log(dato);
 
-            res.redirect('/petto')
+            res.redirect('/petto/client')
         })
         .catch(err => {
             console.log(err);
