@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 var cookieParser = require('cookie-parser');
 const path = require('path');
+const passport = require('passport');
 
 const connetion = require('./connect');
 
@@ -40,9 +41,9 @@ app.use(bodyParser.json());
 //Variables globales
 app.use((req, res, next) => {
 	app.locals.user = req.user;
-	console.log("usuario",req.user);
-	console.log("usuarios",req.sessionID);
-	console.log("session",req.session);
+	// console.log("usuario",req.user);
+	// console.log("usuarios",req.sessionID);
+	// console.log("session",req.session);
 	next();
 });
 
@@ -58,6 +59,8 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, 'views/auth/signin.html'));

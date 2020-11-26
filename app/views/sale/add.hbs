@@ -131,8 +131,11 @@
     var detail = [];
     var user = document.getElementById('user_id');
     var client = document.getElementById('client_id');
+    var stock = document.getElementById('stock');
+    var cantidad = document.getElementById('quantity');
+    var precio_venta = document.getElementById('price');
     var cont = 0;
-    total = 0;
+    var total = 0;
     subtotal = [];
     $('#guardar').hide();
     $('#product_id').change(mostrarValores);
@@ -140,8 +143,8 @@
 
     function mostrarValores() {
         datosArticulo = document.getElementById('product_id').value.split('_');
-        $("#stock").val(datosArticulo[1]);
         $("#price").val(datosArticulo[2]);
+        $("#stock").val(datosArticulo[1]);
         console.log(datosArticulo);
     }
 
@@ -170,7 +173,7 @@
     }
 
     function agregar() {
-
+        total = 0;
         datosArticulo = document.getElementById('product_id').value.split('_');
         console.log(detail.length);
         var detalle = {
@@ -182,33 +185,38 @@
             subtotal: $('#quantity').val() * $('#price').val(),
         };
         detail.push(detalle);
-        console.log(detail);
 
-        if ($('#detalles tbody').length >= 1) {
-            $("#fila ").remove();
+        for (let c = 0; c < cont; c++) {
+            if ($('#detalles tbody').length >= 0) {
+                $('#fila' + c).remove();
+            }
         }
         for (let i = 0; i < detail.length; i++) {
-            console.log(detail.length);
-            console.log(detail[i].producto);
-            console.log(this.detail[i].subtotal);
 
-            var fila = '<tr class="selected" id="fila' + cont + '">' +
-                '<td><button class="button" onclick="eliminar(' + cont + ');">x</button></td>' +
-                '<td><input type="text" name="" value="' + detail[i].idproducto + '">' + this.detail[i].producto + '</td>' +
-                '<td><input type="number" name="" value="' + this.detail[i].cantidad + '"></td>' +
-                '<td><input type="number" name="" value="' + this.detail[i].precio_venta + '" readonly></td>' +
-                '<td>' + this.detail[i].subtotal + '</td></tr>';
+            if (stock >= cantidad) {
+                subtotal[cont] = (this.detail[i].cantidad * this.detail[i].precio_venta);
+                total = total + subtotal[cont];
+                console.log("Total ", total);
 
-            cont++;
+                var fila = '<tr class="selected" id="fila' + cont + '">' +
+                    '<td><a class="button" onclick="eliminar(' + i + ');">x</a></td>' +
+                    '<td><input class="input is-static" type="hidden" name="" value="' + detail[i].idproducto + '">' + detail[i].producto + '</td>' +
+                    '<td><input class="input is-static" type="number" name="" value="' + detail[i].cantidad + '"></td>' +
+                    '<td><input class="input is-static" type="number" name="" value="' + detail[i].precio_venta + '" readonly></td>' +
+                    '<td><input class="input is-static" type="number" name="" value="' + detail[i].subtotal + '"></td></tr>';
+
+                cont++;
 
 
-            $('#total').html('Q/. ' + total);
-            $('#total_sale').val(total);
-            limpiar();
+                $('#total').html('Q/. ' + total);
+                $('#total_sale').val(total);
+                limpiar();
 
-            $('#detalles').append(fila);
-            evaluar();
-
+                $('#detalles').append(fila);
+                evaluar();
+            } else {
+                alert('Cantidad a vender supera el Stock' + stock);
+            }
         }
     }
 
@@ -228,10 +236,10 @@
     }
 
     function eliminar(index) {
-        total = total - subtotal[index];
-        $('#total').html("Q/. " + total);
-        $('#total_sale').val(total);
-        $('#fila' + index).remove();
-        evaluar();
+        detail.splice(index, 1);
+        console.log("splice",detail.splice(index, 1));
+        console.log("index",index);
+        console.log("detalle", detail);
+        agregar();
     }
 </script>
