@@ -20,10 +20,9 @@ exports.store = (req, res) => {
     console.log("sale " ,req.body);
 
     const sale = new Sale.Sale({
-        total_sale: req.body.total_sale,
-        user_id: req.body.user_id,
-        client_id: req.body.client_id,
-        is_active: req.body.is_active
+        total_sale: req.body[0].total_sale,
+        user_id: req.body[0].user_id,
+        client_id: req.body[0].client_id
     });
 
     var detail = [];
@@ -38,7 +37,7 @@ exports.store = (req, res) => {
         detail.push(details);
     }
 
-    Sale.create(sale, detail, (err, data) => {
+    Sale.Sale.store(sale, detail, (err, data) => {
         if (err)
             res.status(500).send({
                 message: err.message || "Error al crear registro de venta"

@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -23,6 +24,7 @@
     "node-fetch": "^2.6.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
+    "sweetalert": "^2.1.2",
     "timeago.js": "^4.0.2"
   },
   "devDependencies": {

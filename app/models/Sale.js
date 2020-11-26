@@ -4,11 +4,11 @@ const Sale = function (sale) {
     this.total_sale = sale.total_sale;
     this.user_id = sale.user_id;
     this.client_id = sale.client_id;
-    this.is_active = sale.is_active;
+    // this.is_active = sale.is_active;
 };
 
 const Detail = function (detail) {
-    this.sale_id = detail.sale_id;
+    // this.sale_id = detail.sale_id;
     this.quantity = detail.quantity;
     this.product_id = detail.product_id;
     this.price = detail.price;
@@ -57,14 +57,14 @@ Sale.store = (newSale, newDetail, result) => {
 
             for (let ds = 0; ds < newDetail.length; ds++) {
                 details.push([
+                    saleId,
                     newDetail[ds].quantity,
                     newDetail[ds].product_id,
                     newDetail[ds].price,
-                    newDetail[ds].subtotal,
-                    saleId
+                    newDetail[ds].subtotal
                 ]);
             }
-            sql.query("INSERT into sale_details (saleId,quantity,product_id,price,subtotal) values ?", [details], function (err, res) {
+            sql.query("INSERT into sale_details (sale_id,quantity,product_id,price,subtotal) values ?", [details], function (err, res) {
                 if (err) {
                     sql.rollback;
                     console.log("error: ", err);

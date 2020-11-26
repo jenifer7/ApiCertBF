@@ -50,7 +50,7 @@ module.exports = app => {
     app.delete("/tiposPro/:productTypeId", tiposPro.delete);
 
 
-    app.post("/sales", sales.create);
+    app.post("/sales", sales.store);
     // app.get("/sales", sales.findAll);
     // app.get("/sales/:saleId", sales.findById);
     // app.put("/sales/:saleId", sales.update);
