@@ -130,7 +130,8 @@
 
     var detail = [];
     var user = document.getElementById('user_id').value;
-    var client = document.getElementById('client_id').value;
+
+
     var stock = document.getElementById('stock');
     var cantidad = document.getElementById('quantity');
     var precio_venta = document.getElementById('price');
@@ -151,6 +152,7 @@
 
 
     async function guardar() {
+        var client = document.getElementById('client_id').value;
         var sale = [{
             total_sale: total,
             user_id: user,
@@ -162,7 +164,7 @@
         await swal({
             title: '¿Confirmar Venta?',
             buttons: {
-                cancel:true, 
+                cancel: true,
                 confirm: "Aceptar",
             },
         }).then((Created) => {
@@ -180,6 +182,7 @@
         }).catch((err) => {
             console.log(err);
         })
+        setTime();
     }
 
     function agregar() {
@@ -258,9 +261,14 @@
         setItems();
     }
 
+
+    var myVar;
+
+    function setTime() {
+        myVar = setTimeout(redirect, 3000);
+    }
+
     function redirect() {
-        window.location = "http://localhost:3000/petto/sale/add";
-        document.write("Venta Realizada");
-        setTimeout('redirect()', 1000);
+        window.location = "http://localhost:3000/petto/sale/";
     }
 </script>

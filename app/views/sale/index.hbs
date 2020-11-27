@@ -1,41 +1,33 @@
 <div class="section">
     <div class="table-container">
-            <section class="hero">
+        <section class="hero">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title">
-                        PRODUCTOS
+                        VENTAS
                     </h1>
                 </div>
             </div>
         </section>
+        <p id="uno"></p>
         <table class="table">
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Tipo de Producto</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th>Estado</th>
+                    <th>Cliente</th>
+                    <th>Fecha Venta</th>
+                    <th>Total Venta</th>
+                    <th>Vendedor</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each data}}
                 <tr>
                     <td>{{ name }}</td>
-                    <td>{{ description }}</td>
-                    <td>{{ product_type_id }}</td>
-                    <td>{{ price }}</td>
-                    <td>{{ stock }}</td>
-                    <td>{{ is_active }}</td>
-                    <td><a class="button" href="/petto/product/show/{{id}}">Detalle</a></td>
-                    <td><a class="button is-link" href="/petto/product/edit/{{id}}">Editar</a></td>
-                    <td>
-                        <form action="/petto/product/destroy/{{id}}" method="POST">
-                            <button class="button">Eliminar</button>
-                        </form>
-                    </td>
+                    <td>{{ sale_date }}</td>
+                    <td>{{ total_sale }}</td>
+                    <td>{{ username }}</td>
+                    <td><a class="button" href="">Detalle</a></td>
+                    <td><a class="button is-link" href="">Editar</a></td>
                 </tr>
                 {{/each}}
             </tbody>

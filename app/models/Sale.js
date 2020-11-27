@@ -86,4 +86,17 @@ Sale.store = (newSale, newDetail, result) => {
     });
 };
 
+Sale.getAll = result => {
+    sql.query(`select s.id, s.sale_date, s.total_sale, c.name, u.username  from sales s, clients c, users u where c.id = s.client_id and u.id = s.user_id; `, (err, res) => {
+        if(err){
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+        console.log("Sales: ", res);
+        result(null, res);
+    });
+};
+
+
 module.exports = {Sale, Detail};

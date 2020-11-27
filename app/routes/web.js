@@ -200,7 +200,8 @@ router.route('/service/destroy/:serviceId')
 
 
 router.route('/sale/')
-.post(sale.store);
+.post(sale.store)
+.get(sale.findAll);
 
 router.route('/sale/add')
 .get(sale.create);

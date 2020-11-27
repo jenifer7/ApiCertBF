@@ -45,4 +45,16 @@ exports.store = (req, res) => {
         else res.send(data);
         // else res.redirect('/petto/sale');
     });
+}
+
+exports.findAll = (req, res) => {
+    Sale.Sale.getAll((err, data) => {
+        if(err)
+            res.status(500).send({
+                message:
+                err.message || "Error al intentar mostrar los registros Productos"
+            });
+            // else res.send(data);
+            else res.render('sale/index', {data});
+    });
 };

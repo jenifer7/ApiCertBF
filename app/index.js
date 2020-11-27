@@ -108,7 +108,6 @@ app.get('/logout', function (req, res) {
 
 
 app.use('/', express.static(__dirname + '/public'));
-app.use('/js', express.static(__dirname + '/node_modules/sweetalert/dist/'));
 
 //Starting server and app
 app.listen(app.get('port'), () => {
