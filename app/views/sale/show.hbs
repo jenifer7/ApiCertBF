@@ -1,70 +1,87 @@
 <div class="section">
     <div class="container">
-        <section class="hero">
+        <div class="hero is-link">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">
-                        PRODUCTO
-                    </h1>
-                    <h1>{{data.name}}</h1>
+                    <h1 class="title is-2">Venta</h1>
                 </div>
             </div>
-        </section>
-        <form action="" method="POST">
-            <div class="field">
-                <label class="label">Nombre</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input is-success" type="text" name="name" value="{{data.name}}">
-                    <span class="icon is-small is-right">
-                        <i class="fas fa-check"></i>
-                    </span>
+        </div>
+        <br>
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field-label is-normal">
+                    <label class="label">Fecha Venta</label>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <input class="input" type="text" value="{{data.[0].sale_date}}">
+                    </p>
                 </div>
             </div>
+        </div>
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field-label is-normal">
+                    <label class="label">Cliente</label>
+                </div>
+                <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                        <input class="input" type="text" value="{{data.[0].cliente}} {{data.[0].lastname}}">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field-label is-normal">
+                    <label class="label">Vendedor</label>
+                </div>
+                <div class="field">
+                    <p class="control is-expanded has-icons-left has-icons-right">
+                        <input class="input" type="text" value="{{data.[0].usuario}}">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
 
-            <div class="field">
-                <label class="label">Descripción</label>
-                <div class="control has-icons-left has-icons-right">
-                    <input class="input" type="text" name="description" value="{{data.description}}">
-                    <span class="icon is-small is-right">
-                        <i class="fas fa-check"></i>
-                    </span>
-                </div>
+        <br>
+        <div class="section">
+            <div class="container">
+                <table id="detalles" class="table is-fullwidth">
+                    <thead style="background-color: #A9D0F5">
+                        <th>Productos</th>
+                        <th>Cantidad</th>
+                        <th>Precio venta</th>
+                        <th>Subtotal</th>
+                    </thead>
+                    <tfoot>
+                        <th>TOTAL</th>
+                        <th></th>
+                        <th></th>
+                        <th>
+                            <h4 id="total">{{data.[0].total_sale}}</h4>
+                        </th>
+                    </tfoot>
+                    <tbody>
+                        {{#each data}}
+                        <tr>
+                            <td>{{ producto }}</td>
+                            <td>{{ quantity }}</td>
+                            <td>{{ price }}</td>
+                            <td>{{ subtotal }}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
             </div>
-
-
-            <div class="field">
-                <label class="label">Tipo de Producto</label>
-                <div class="control">
-                    <input class="input" name="product_type_id" type="text" value="{{data.product_type_id}}">
-                </div>
+        </div>
+        <div class="field is-grouped">
+            <div class="control">
+                <a class="button is-link is-light" href="/petto/sale/">Regresar</a>
             </div>
-
-
-            <div class="field">
-                <label class="label">Precio</label>
-                <div class="control">
-                    <input class="input" name="price" type="number" value="{{data.price}}">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Stock</label>
-                <div class="control">
-                    <input class="input" name="stock" type="text" value="{{data.stock}}">
-                </div>
-            </div>
-
-            <div class="field">
-                <label class="label">Estado</label>
-                <div class="control">
-                    <input class="input" name="is_active" type="text" value="{{data.is_active}}">
-                </div>
-            </div>
-            <div class="field is-grouped">
-                <div class="control">
-                    <a class="button is-link is-light" href="/petto/product/">Regresar</a>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

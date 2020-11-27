@@ -13,9 +13,17 @@ async function index(req, res) {
         });
 }
 
-// function create(req, res) {
-//     res.render('patient/add');
-// }
+async function create(req, res) {
+    var url = 'http://localhost:3000/clients/';
+    await fetch(url)
+        .then(res => res.json())
+        .then(dato => {
+            res.render('patient/add', { dato })
+        })
+        .catch(err => {
+            console.log(err);
+        });
+}
 
 function store(req, res) {
     console.log(req);
@@ -130,4 +138,4 @@ function destroy(req, res) {
 //     });
 // }
 
-module.exports = { index, store, show, edit, update, destroy }
+module.exports = { index, create, store, show, edit, update, destroy }

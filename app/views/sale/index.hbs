@@ -13,21 +13,24 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Cliente</th>
+                    <th colspan="2">Cliente</th>
                     <th>Fecha Venta</th>
                     <th>Total Venta</th>
                     <th>Vendedor</th>
+                    <td></td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
                 {{#each data}}
                 <tr>
                     <td>{{ name }}</td>
+                    <td>{{ lastname }}</td>
                     <td>{{ sale_date }}</td>
                     <td>{{ total_sale }}</td>
                     <td>{{ username }}</td>
-                    <td><a class="button" href="">Detalle</a></td>
-                    <td><a class="button is-link" href="">Editar</a></td>
+                    <td><a class="button" href="/petto/sale/show/{{id}}">Detalle</a></td>
+                    <td><a class="button" href="">Editar</a></td>
                 </tr>
                 {{/each}}
             </tbody>

@@ -1,19 +1,7 @@
 const Patient = require("../models/Patient.js");
 
-exports.create = (req, res) => {
-    Patient.create((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Error al mostrar"
-            });
-            else res.render('patient/add', {data});
-    });
-}
-
-
 //Crear y guardar nuevo paciente
-exports.store = (req, res) => {
+exports.create = (req, res) => {
     if (!req.body) {
         res.status(400).send({
             message: "No se puede enviar contenido vacio"
@@ -31,7 +19,7 @@ exports.store = (req, res) => {
         is_active: req.body.is_active
     });
 
-    Patient.create(patient, (err, data) => {
+    Patient.store(patient, (err, data) => {
         if (err)
             res.status(500).send({
                 message: err.message || "Error al crear registro de Paciente"

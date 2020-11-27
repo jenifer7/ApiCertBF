@@ -99,7 +99,7 @@ module.exports = app => {
     app.delete("/patientStatuses/:patientStatusId", patientStatuses.delete);
 
 
-    app.post("/patients", patients.store);
+    app.post("/patients", patients.create);
     app.get("/patients", patients.findAll);
     app.get("/patients/:patientId", patients.findById);
     app.put("/patients/:patientId", patients.update);

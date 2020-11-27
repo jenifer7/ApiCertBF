@@ -10,7 +10,6 @@ const types_serv = require('../controllers/service_type_controller')
 const product = require('../controllers/product_controller')
 const service = require('../controllers/service_controller')
 const sale = require('../controllers/sale_controller')
-const patientc = require('../controllers/patient_controller')
 const router = express.Router();
 
 router.route('/client/')
@@ -58,8 +57,7 @@ router.route('/patient/')
 .post(patient.store);
 
 router.route('/patient/add')
-.get(patientc.create);
-
+.get(patient.create);
 
 router.route('/patient/show/:patientId')
 .get(patient.show);
@@ -205,5 +203,8 @@ router.route('/sale/')
 
 router.route('/sale/add')
 .get(sale.create);
+
+router.route('/sale/show/:saleId')
+.get(sale.findById);
 
 module.exports = router;

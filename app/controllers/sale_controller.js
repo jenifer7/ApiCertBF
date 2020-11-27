@@ -58,3 +58,20 @@ exports.findAll = (req, res) => {
             else res.render('sale/index', {data});
     });
 };
+
+exports.findById = (req, res) => {
+    Sale.Sale.findById(req.params.saleId, (err, data) => {
+        if(err) {
+            if(err.kind === "No encontrado") {
+                res.status(404).send({
+                    message: 'No se encontro el Producto ${req.params.productsId}'
+                });
+            } else {
+                res.status(500).send({
+                    message: "Error al mostrar el registro " + req.params.saleId
+                });
+            }
+        // }else res.send(data);
+        }else res.render('sale/show', {data});
+    });
+};

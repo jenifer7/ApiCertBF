@@ -17,9 +17,8 @@
                     <th>Genero</th>
                     <th>Peso</th>
                     <th>Edad</th>
-                    <th>Propietario</th>
+                    <th colspan="2" >Propietario</th>
                     <th>Estado Clinico</th>
-                    <th>Estado</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -34,8 +33,8 @@
                     <td>{{weight}}</td>
                     <td>{{age}}</td>
                     <td>{{client}}</td>
+                    <td>{{client.lastname}}</td>
                     <td>{{status}}</td>
-                    <td>{{is_active}}</td>
                     <td><a class="button" href="/petto/patient/show/{{id}}">Detalle</a></td>
                     <td><a class="button is-link" href="/petto/patient/edit/{{id}}">Editar</a></td>
                     <td>

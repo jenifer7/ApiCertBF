@@ -12,17 +12,6 @@
         <br>
         <form action="/petto/patient/" method="POST">
             <div class="field">
-                <label class="label">Propietario</label>
-                <div class="select">
-                    <select name="client_id" id="client_id">
-                        {{#each data }}
-                        <option value="{{id}}">{{ name }} {{ lastname }}</option>
-                        {{/each}}
-                    </select>
-                </div>
-            </div>
-
-            <div class="field">
                 <label class="label">Nombre</label>
                 <div class="control has-icons-left has-icons-right">
                     <input class="input" type="text" placeholder="Nombre" name="name" value="">
@@ -64,6 +53,17 @@
                 <label class="label">Edad</label>
                 <div class="control">
                     <input class="input" name="age" type="text" placeholder="">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Propietario</label>
+                <div class="select">
+                    <select name="client_id" id="client_id">
+                        {{#each dato }}
+                        <option value="{{id}}">{{ name }} {{ lastname }}</option>
+                        {{/each}}
+                    </select>
                 </div>
             </div>
 
